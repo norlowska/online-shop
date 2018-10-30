@@ -1,0 +1,28 @@
+﻿@model IEnumerable<OnlineShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Produkty</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+@foreach (var prod in Model)
+{
+    <div class="pordukt">
+        <h1>@prod.name</h1>
+        <p2>@prod.description</p2>
+        <p1>@Html.ActionLink("Edytuj", "Edit", new { id = prod.Id })</p1>
+
+
+        <div class="cena">
+            @prod.price
+        </div>
+
+    </div>
+}
