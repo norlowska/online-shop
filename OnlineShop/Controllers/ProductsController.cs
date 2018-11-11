@@ -19,6 +19,55 @@ namespace OnlineShop.Controllers
         {
             return View(db.products.ToList());
         }
+        static List<Product> Koszyk = new List<Product>();
+
+        public ActionResult add_to_cart(int? id)
+        {
+            if (id == null)
+                return HttpNotFound();
+            var model = db.products.Single(p => p.Id == id);
+            if (model == null)
+                return HttpNotFound();
+
+
+
+            Koszyk.Add(model);
+
+            return RedirectToAction("Index");
+
+
+        }
+
+        public ActionResult viewCart()
+        {
+            return View(Koszyk);
+        }
+
+
+        public ActionResult remove_item_in_cart(int? id)
+        {
+            if (id == null)
+                return HttpNotFound();
+            var model = db.products.Single(p => p.Id == id);
+            if (model == null)
+                return HttpNotFound();
+
+            Product dodaj = (Product)model;
+
+
+
+            return RedirectToRoute(new
+            {
+                controller = "Home",
+                action = "Index",
+
+            });
+
+
+
+
+        }
+
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
