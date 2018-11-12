@@ -8,17 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
 
-
 namespace OnlineShop.Controllers
 {
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        public CategoriesController()
-        {
-
-        }
 
         // GET: Categories
         public ActionResult Index()
@@ -52,7 +46,7 @@ namespace OnlineShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,category_name")] Category category)
+        public ActionResult Create([Bind(Include = "Id,name")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +78,7 @@ namespace OnlineShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,category_name")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,name")] Category category)
         {
             if (ModelState.IsValid)
             {

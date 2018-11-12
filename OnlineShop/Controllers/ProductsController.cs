@@ -47,7 +47,12 @@ namespace OnlineShop.Controllers
 
             Koszyk.Add(model);
 
-            return RedirectToAction("Index");
+            return RedirectToRoute(new
+            {
+                controller = "Categories",
+                action = "Index",
+
+            });
 
 
         }

@@ -206,6 +206,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811111628486_InitialCreate.cs" />
+    <Compile Include="Migrations\201811111628486_InitialCreate.Designer.cs">
+      <DependentUpon>201811111628486_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811122130140_commend.cs" />
+    <Compile Include="Migrations\201811122130140_commend.Designer.cs">
+      <DependentUpon>201811122130140_commend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
@@ -314,6 +323,7 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\viewCart.cshtml" />
     <Content Include="Views\Products\sreach.cshtml" />
+    <Content Include="Views\Categories\_Produkty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +336,14 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811111628486_InitialCreate.resx">
+      <DependentUpon>201811111628486_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811122130140_commend.resx">
+      <DependentUpon>201811122130140_commend.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
