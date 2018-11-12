@@ -14,9 +14,23 @@ namespace OnlineShop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Products
+
         public ActionResult Index()
         {
+            var moder = db.products.ToList();
+            return View(moder);
+        }
+
+        // GET: Products
+        public ActionResult sreach(string sreach=null)
+        {
+            IEnumerable<Product> model;
+            if(sreach!=null)
+            {
+                model = db.products.Where(p => p.name.Contains(sreach));
+                return View(model);
+            }
+            else
             return View(db.products.ToList());
         }
         static List<Product> Koszyk = new List<Product>();
@@ -89,6 +103,8 @@ namespace OnlineShop.Controllers
         {
             return View();
         }
+
+
 
         // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

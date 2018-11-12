@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<OnlineShop.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "sreach";
 }
 
+<h2>Products</h2>
 
+<p>
+    <form method="get">
+<p><input type="text" name="sreach" /> <input type="submit" value="sreach" /> </p>
 
+    </form>
+</p>
 <table class="table">
-   
     <tr>
-
-
-
         <th>
             @Html.DisplayNameFor(model => model.name)
         </th>
@@ -36,10 +38,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.price)
             </td>
-            <td>
-                @Html.ActionLink("buy now", "buy/"+ item.Id, "Home")
-                @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
-            </td>
+            <td></td>
         </tr>
     }
 
