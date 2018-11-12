@@ -9,14 +9,25 @@ namespace OnlineShop.Controllers
 {
     public class ProductController : Controller
     {
-        List<Product> products = new List<Product>
-        {
-            new Product { Id=1,name="Myszka1",price=20,description="to jest myszka1" },
-             new Product { Id=2,name="Myszka2",price=20,description="to jest myszka2" },
-              new Product { Id=3,name="Myszka3",price=20,description="to jest myszka2" },
-               new Product { Id=4,name="Myszka4",price=20,description="to jest myszka3" },
-        };
 
+        List<Product> products;
+        public ProductController()
+        {
+            Category child1 = new Category { Id = 101, name = "MYSZKI", Children = null };
+            Category child2 = new Category { Id = 102, name = "KLAWIATURY", Children = null };
+            List<Category> children = new List<Category>();
+            children.Add(child1);
+            children.Add(child2);
+
+            Category cat = new Category { Id = 1, name = "AKCESORIA", Children = children };
+            products = new List<Product>
+        {
+            new Product { Id=1,name="Myszka1",price=20,description="to jest myszka1", Category=(cat.Children).ElementAt(0) },
+             new Product { Id=2,name="Myszka2",price=20,description="to jest myszka2", Category=(cat.Children).ElementAt(0) },
+              new Product { Id=3,name="Myszka3",price=20,description="to jest myszka2", Category=(cat.Children).ElementAt(0) },
+               new Product { Id=4,name="Klawiatura1",price=20,description="to jest klawiatura", Category=(cat.Children).ElementAt(1) },
+        };
+        }
         // GET: Product
         public ActionResult Index()
         {

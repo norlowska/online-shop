@@ -15,6 +15,11 @@ namespace OnlineShop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public CategoriesController()
+        {
+
+        }
+
         // GET: Categories
         public ActionResult Index()
         {

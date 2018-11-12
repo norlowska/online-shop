@@ -14,7 +14,7 @@ namespace OnlineShop.Models
 
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-
+        
         //public virtual Category cat_pro { get; set; }
         //public ICollection<Comment> comments { get; set; }
     }
