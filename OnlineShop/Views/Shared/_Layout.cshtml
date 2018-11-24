@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperSklep | @ViewBag.Title</title>
-    <link href="https://fonts.googleapis.com/css?family=Oswald|PT+Sans+Narrow" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Oswald:400,500,700|Roboto:300,500,700&amp;subset=latin-ext" rel="stylesheet">
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -19,9 +18,9 @@
                 </a>
             </div>
             <nav>
-                <ul>
+                <ul class="list-unstyled">
                     <li>@Html.ActionLink("HOME", "Index", "Home")</li>
-                    <li>@Html.ActionLink("STORE", "Index", "Categories")</a></li>
+                    <li>@Html.ActionLink("STORE", "Index", "Products")</li>
                     <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
                     <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
                 </ul>

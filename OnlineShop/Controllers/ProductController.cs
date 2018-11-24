@@ -28,7 +28,7 @@ namespace OnlineShop.Controllers
         public ActionResult Details(int id)
         {
             var model = products.FirstOrDefault(p => p.Id == id);
-            return View();
+            return View(model);
         }
 
         // GET: Product/Create
@@ -56,7 +56,8 @@ namespace OnlineShop.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = products.Find(p => p.Id == id);
+            return View(model);
         }
 
         // POST: Product/Edit/5
