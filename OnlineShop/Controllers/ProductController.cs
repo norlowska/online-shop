@@ -12,8 +12,8 @@ namespace OnlineShop.Controllers
         List<Product> products = new List<Product>
         {
             new Product { Id=1,name="Myszka1",price=20,description="to jest myszka1" },
-             new Product { Id=2,name="Myszka2",price=20,description="to jest myszka2" },
-              new Product { Id=3,name="Myszka3",price=20,description="to jest myszka2" },
+             new Product { Id=2,name="Myszka2",price=40,description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget pellentesque lectus. Praesent ac purus vel sapien sagittis elementum. Integer eget bibendum libero. Donec hendrerit id lectus ut bibendum. Aliquam ullamcorper quam tortor, nec interdum arcu vulputate quis. " },
+              new Product { Id=3,name="Myszka3",price=20,description=@"<i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<i>" },
                new Product { Id=4,name="Myszka4",price=20,description="to jest myszka3" },
         };
 
@@ -56,7 +56,7 @@ namespace OnlineShop.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = products.Find(p => p.Id == id);
+            var model = products.FirstOrDefault(p => p.Id == id);
             return View(model);
         }
 

@@ -36,22 +36,13 @@
                 <div class="product-price"><h3>@Html.DisplayFor(modelItem => @Model.price) PLN</h3></div>
                 <div class="product-availability">@*tu dostępność w magazynie*@</div>
                 <div class="product-description">
-                    @*
-                        Docelowo zamiast Lorem ipsum
-                        @Html.DisplayFor(modelItem => @Model.description)
-                    *@
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nulla urna, bibendum et nibh ut, fringilla ultricies ligula.
-                        Curabitur tellus lacus, lacinia in vulputate a, gravida sit amet elit. Fusce eu mauris ante. Proin eget ullamcorper dui.
-                        Morbi nec felis et mi congue maximus. Integer tincidunt quis orci at ullamcorper.
-                        Donec nibh erat, facilisis eu accumsan non, eleifend a dui.
-                    </p>
+                        @Html.Raw(@Model.description)
                 </div>
                 <form class="product-to-cart">
                     <div class="qty">
                         <h4>Qty: </h4>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group qty-input">
                         <span class="input-group-btn">
                             <button type="button" class="quantity-left-minus btn btn-default btn-number" data-type="minus" data-field="">
                                 <span class="glyphicon glyphicon-minus"></span>
