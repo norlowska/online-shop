@@ -95,7 +95,7 @@ namespace OnlineShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.products.Find(id);
+            Product product = db.products.Where(p => id == p.Id).FirstOrDefault();
             if (product == null)
             {
                 return HttpNotFound();
@@ -135,7 +135,7 @@ namespace OnlineShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.products.Find(id);
+            Product product = db.products.Where(p => id == p.Id).FirstOrDefault();
             if (product == null)
             {
                 return HttpNotFound();

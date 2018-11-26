@@ -1,42 +1,67 @@
 ﻿@model OnlineShop.Models.Product
-
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/qty-input.js")"></script>
+}
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="product-details">
+    <div class="row">
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink("HOME", "Index", "Home")</li>
+            <li>@Html.ActionLink("STORE", "Index", "Categories")</li>
+            @* dla każdej kategorii breadcrumb*@
+            <li></li>
+            @*a tu nazwa produktu*@
+            <li class="active">@Html.DisplayFor(modelItem => @Model.name)</li>
+        </ul>
+    </div>
+    <div class="row details-row">
 
-<div>
-    <h4>Products</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+        <div class="col-sm-12 col-lg-5 text-center">
+            <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
+        </div>
+        <div class="col-sm-12 col-lg-7 justify-content-center">
+            <div class="details-content">
+                <div class="product-name">
+                    <h2>@Html.DisplayFor(modelItem => @Model.name)</h2>
+                    <a class="btn btn-default" href='@Url.Action("Edit", "Products", new { id = Model.Id})'>
+                        <span class="glyphicon glyphicon-pencil" style="margin-right: 12px;"></span>Edit details
+                    </a>
+                    <div style="clear:both;"></div>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                </div>
+                <div class="product-price"><h3>@Html.DisplayFor(modelItem => @Model.price) PLN</h3></div>
+                <div class="product-availability">@*tu dostępność w magazynie*@</div>
+                <div class="product-description">
+                    @Html.Raw(@Model.description)
+                </div>
+                <form class="product-to-cart">
+                    <div class="qty">
+                        <h4>Qty: </h4>
+                    </div>
+                    <div class="input-group qty-input">
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-left-minus btn btn-default btn-number" data-type="minus" data-field="">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-right-plus btn btn-default btn-number" data-type="plus" data-field="">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <button type="submit" class="btn btn-default">Add to cart</button>
+                </form>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
-
-    </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

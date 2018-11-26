@@ -201,7 +201,6 @@
     <Compile Include="Controllers\DbController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +212,14 @@
     <Compile Include="Migrations\201811122130140_commend.cs" />
     <Compile Include="Migrations\201811122130140_commend.Designer.cs">
       <DependentUpon>201811122130140_commend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811262025010_DataAnnotations.cs" />
+    <Compile Include="Migrations\201811262025010_DataAnnotations.Designer.cs">
+      <DependentUpon>201811262025010_DataAnnotations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811262029506_DataAnnotations1.cs" />
+    <Compile Include="Migrations\201811262029506_DataAnnotations1.Designer.cs">
+      <DependentUpon>201811262029506_DataAnnotations1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -315,7 +322,6 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
@@ -324,8 +330,6 @@
     <Content Include="Views\Products\viewCart.cshtml" />
     <Content Include="Views\Products\sreach.cshtml" />
     <Content Include="Views\Categories\_Produkty.cshtml" />
-    <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -345,6 +349,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811122130140_commend.resx">
       <DependentUpon>201811122130140_commend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811262025010_DataAnnotations.resx">
+      <DependentUpon>201811262025010_DataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811262029506_DataAnnotations1.resx">
+      <DependentUpon>201811262029506_DataAnnotations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
