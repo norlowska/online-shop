@@ -213,13 +213,9 @@
     <Compile Include="Migrations\201811122130140_commend.Designer.cs">
       <DependentUpon>201811122130140_commend.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811262025010_DataAnnotations.cs" />
-    <Compile Include="Migrations\201811262025010_DataAnnotations.Designer.cs">
-      <DependentUpon>201811262025010_DataAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811262029506_DataAnnotations1.cs" />
-    <Compile Include="Migrations\201811262029506_DataAnnotations1.Designer.cs">
-      <DependentUpon>201811262029506_DataAnnotations1.cs</DependentUpon>
+    <Compile Include="Migrations\201811262038015_DataAnnotations.cs" />
+    <Compile Include="Migrations\201811262038015_DataAnnotations.Designer.cs">
+      <DependentUpon>201811262038015_DataAnnotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -350,11 +346,8 @@
     <EmbeddedResource Include="Migrations\201811122130140_commend.resx">
       <DependentUpon>201811122130140_commend.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811262025010_DataAnnotations.resx">
-      <DependentUpon>201811262025010_DataAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811262029506_DataAnnotations1.resx">
-      <DependentUpon>201811262029506_DataAnnotations1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811262038015_DataAnnotations.resx">
+      <DependentUpon>201811262038015_DataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
