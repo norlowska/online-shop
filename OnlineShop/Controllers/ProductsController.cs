@@ -159,6 +159,7 @@ namespace OnlineShop.Controllers
                     if (file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
+                        fileName = fileName.Replace(' ','_');
                         product.filePath = Path.Combine(
                             Server.MapPath("~/Content/Images/"), fileName);
                         file.SaveAs(product.filePath);
@@ -175,40 +176,6 @@ namespace OnlineShop.Controllers
             return View(product);
         }
         
-        // GET: Products/AddFile
-        [HttpGet]
-        public ActionResult AddFile(Product product)
-        {
-            //Product product = db.products.Where(p => Id == p.Id).FirstOrDefault();
-            return View(product);
-        }
-
-        // POST: Products/AddFileNext
-        [HttpPost]
-        public ActionResult AddFileNext([Bind(Include = "Id,name,description,price,filePath")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                if (Request.Files.Count > 0)
-                {
-                    HttpPostedFileBase file = Request.Files[0];
-                    if (file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        product.filePath = Path.Combine(
-                            Server.MapPath("~/Content/Images/"), fileName);
-                        file.SaveAs(product.filePath);
-                    }
-                    db.Entry(product).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-
-            return RedirectToAction("Index");
-        }
-
-
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {

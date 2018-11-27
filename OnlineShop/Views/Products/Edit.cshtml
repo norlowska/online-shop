@@ -26,7 +26,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
         <div class="col-sm-12 col-lg-5 text-center product-img">
-            <!--Html.ActionLink("Add Picture", "AddFile", "Products",Model, null)-->
+            
             @{
                 var temp = Model.filePath.Split('\\');
                 if (Model.filePath == null)
@@ -42,7 +42,6 @@
 
             <input type="file" name="filePath" id="filePath" runat="server" />
             @Html.ValidationMessageFor(model => model.filePath)
-            <!--<input class="form-control" type="file" name="prodImg" accept="image/png, image/jpeg">-->
         </div>
             <div class="col-sm-12 col-lg-7 justify-content-center">
                 <div class="details-content">
@@ -75,3 +74,4 @@
             </div>
         }
     </div>
+</div>
