@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -148,16 +149,65 @@ namespace OnlineShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,description,price")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        product.filePath = Path.Combine(
+                            Server.MapPath("~/Content/Images/"), fileName);
+                        file.SaveAs(product.filePath);
+                    }
+                    db.Entry(product).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(product);
         }
+        
+        // GET: Products/AddFile
+        [HttpGet]
+        public ActionResult AddFile(Product product)
+        {
+            //Product product = db.products.Where(p => Id == p.Id).FirstOrDefault();
+            return View(product);
+        }
+
+        // POST: Products/AddFileNext
+        [HttpPost]
+        public ActionResult AddFileNext([Bind(Include = "Id,name,description,price,filePath")] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        product.filePath = Path.Combine(
+                            Server.MapPath("~/Content/Images/"), fileName);
+                        file.SaveAs(product.filePath);
+                    }
+                    db.Entry(product).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)

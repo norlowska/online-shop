@@ -19,16 +19,31 @@
         </ul>
     </div>
     <div class="row details-row">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
-            <div class="col-sm-12 col-lg-5 text-center product-img">
-                <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
-                <input class="form-control" type="file" name="prodImg" accept="image/png, image/jpeg">
-            </div>
+        <div class="col-sm-12 col-lg-5 text-center product-img">
+            <!--Html.ActionLink("Add Picture", "AddFile", "Products",Model, null)-->
+            @{
+                var temp = Model.filePath.Split('\\');
+                if (Model.filePath == null)
+                {
+                    <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
+                }
+                else
+                {
+                    <img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
+                }
+
+            }
+
+            <input type="file" name="filePath" id="filePath" runat="server" />
+            @Html.ValidationMessageFor(model => model.filePath)
+            <!--<input class="form-control" type="file" name="prodImg" accept="image/png, image/jpeg">-->
+        </div>
             <div class="col-sm-12 col-lg-7 justify-content-center">
                 <div class="details-content">
                     <div class="product-name">

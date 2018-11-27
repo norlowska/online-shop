@@ -13,8 +13,9 @@ namespace OnlineShop.Models
         public String name { get; set; }
         [AllowHtml]
         public String description { get; set; }
-        [Required, Range(0.0, (Double)decimal.MaxValue)]
+        //[Required, Range(0.0, (Double)decimal.MaxValue)]
         public decimal price { get; set; }
+        public String filePath { get; set; }
 
         public virtual Category cat_pro { get; set; }
         //public ICollection<Comment> comments { get; set; }

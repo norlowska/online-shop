@@ -1,0 +1,22 @@
+﻿@model OnlineShop.Models.Product
+@{
+    ViewBag.Title = "AddFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    @using (Html.BeginForm("AddFileNext", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationMessageFor(model => model.Id)
+        @Html.HiddenFor(model => model.price)
+        @Html.ValidationMessageFor(model => model.price)
+        @Html.TextBoxFor(model => model.filePath, new { type = "file" })
+        @Html.ValidationMessageFor(model => model.filePath)
+        <input type="submit" value="Save" class="btn btn-default" />
+    }
+
+</div>
+
