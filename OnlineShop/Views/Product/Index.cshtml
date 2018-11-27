@@ -1,0 +1,18 @@
+﻿@model IEnumerable<OnlineShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if(User.IsInRole("Admin"))
+{ 
+<h2>Panel Administracyjny</h2>
+
+<ul>
+    @Html.ActionLink("Produkty", "Index_admin", "Products")
+    @Html.ActionLink("Categorie", "Admin_Index", "Categories")
+    @*<li><a href="#">Uzytkownicy</a></li>*@
+ 
+</ul>
+
+}

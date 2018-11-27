@@ -1,48 +1,70 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperSklep | @ViewBag.Title</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Oswald:400,500,700|Roboto:300,500,700&amp;subset=latin-ext" rel="stylesheet">
+﻿
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="container">
-        <div class="sidenav">
-            <div id="logo">
-                <a href="/">
-                    <img src="~/Content/Images/logo_transparent.png" alt="logo" />
-                </a>
-            </div>
-            <nav>
-                <ul class="list-unstyled">
-                    <li>@Html.ActionLink("HOME", "Index", "Home")</li>
-                    <li>@Html.ActionLink("STORE", "Index", "Products")</li>
-                    <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
-                    <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
-                </ul>
-            </nav>
-            <div class="nav-icons">
-                <a href="#" class="user-nav"><img src="/Content/Images/user-solid.svg" alt="" />LOG IN</a>
-                <a href="/Products/viewCart" class="cart-nav"><img src="/Content/Images/shopping-cart-solid.svg" alt="" /> Cart <span>(0)</span></a>
-                <a href="/Products/sreach" class="search-nav"><img src="/Content/Images/search-solid.svg" alt="" /> Search</a>
-                <a href="https://github.com/urnooblem/online-shop" class="github-nav"><img src="/Content/Images/github-brands.svg" alt="" /></a>
-            </div>
-        </div>
-        <div class="content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year — moja aplikacja platformy ASP.NET</p>
-            </footer>
-        </div>
-    </div>
+        <!DOCTYPE html>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+        <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>SuperSklep | @ViewBag.Title</title>
+            <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Oswald:400,500,700|Roboto:300,500,700&amp;subset=latin-ext" rel="stylesheet">
+
+            @Styles.Render("~/Content/css")
+            @Scripts.Render("~/bundles/modernizr")
+        </head>
+        <body>
+            <div class="container">
+                <div class="sidenav">
+                    <div id="logo">
+                        <a href="#">
+                            <img src="~/Content/Images/logo_transparent.png" alt="logo" />
+                        </a>
+                    </div>
+                    <nav>
+                        <ul class="list-unstyled">
+                            <li>@Html.ActionLink("HOME", "Index", "Home")</li>
+                            <li>@Html.ActionLink("STORE", "Index", "Products")</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                            <li>@Html.ActionLink("Panel Administracyjny", "Index", "Product")</li>
+                            }
+                        </ul>
+                    </nav>
+                    <div class="nav-icons">
+                        @using Microsoft.AspNet.Identity
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav-icons" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                
+                                 <a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+                               
+                            }
+                        }
+                        else
+                        {
+                        <a href="/Account/Login" class="user-nav"><img src="/Content/Images/user-solid.svg" alt="" />LOG IN</a>
+                        }
+                        <a href="/Products/viewCart" class="cart-nav"><img src="/Content/Images/shopping-cart-solid.svg" alt="" /> Cart <span>(0)</span></a>
+                        <a href="/Products/sreach" class="search-nav"><img src="/Content/Images/search-solid.svg" alt="" /> Search</a>
+                        <a href="https://github.com/urnooblem/online-shop" class="github-nav"><img src="/Content/Images/github-brands.svg" alt="" /></a>
+                    </div>
+                </div>
+                <div class="content">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year — moja aplikacja platformy ASP.NET</p>
+                    </footer>
+                </div>
+            </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+        </body>
+    </html>

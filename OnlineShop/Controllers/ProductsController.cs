@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,7 +16,7 @@ namespace OnlineShop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
+        
         public ActionResult Index()
         {
             ShopViewModel model = new ShopViewModel();
@@ -23,6 +24,12 @@ namespace OnlineShop.Controllers
             model.Categories = db.categories.ToList();
 
             return View(model);
+        }
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index_admin()
+        {
+            var moder = db.products.ToList();
+            return View(moder);
         }
 
         // GET: Products
@@ -110,58 +117,100 @@ namespace OnlineShop.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            DropDownList();
             return View();
         }
 
 
 
-        // POST: Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,description,price")] Product product)
+        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro")]Product product)
         {
-            if (ModelState.IsValid)
+            var model = db.categories.SingleOrDefault(p => p.Id == product.cat_pro.Id);
+            if (model != null)
             {
-                db.products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                product.cat_pro = model;
+            }
+            else
+            {
+                return HttpNotFound();
             }
 
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.products.Add(product);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.)
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+            }
+            DropDownList(product.cat_pro);
             return View(product);
         }
 
-        // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.products.Where(p => id == p.Id).FirstOrDefault();
-            if (product == null)
+            Product produkt = db.products.Find(id);
+            if (produkt == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            DropDownList();
+            return View(produkt);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,description,price")] Product product)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(product);
+
+            var prduktToUpdate = db.products.Find(id);
+            if (TryUpdateModel(prduktToUpdate, "",
+               new string[] { "name", "description", "price", "car_pod.id" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            DropDownList(prduktToUpdate.cat_pro);
+            return View(prduktToUpdate);
         }
+
+        private void DropDownList(object selectedDepartment = null)
+        {
+            var departmentsQuery = db.categories.ToList();
+
+            ViewBag.cat_pro = new SelectList(departmentsQuery, "id", "name", selectedDepartment);
+        }
+
+
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
@@ -186,7 +235,7 @@ namespace OnlineShop.Controllers
             Product product = db.products.Find(id);
             db.products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index_admin");
         }
 
         protected override void Dispose(bool disposing)

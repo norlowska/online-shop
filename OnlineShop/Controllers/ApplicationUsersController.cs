@@ -10,123 +10,107 @@ using OnlineShop.Models;
 
 namespace OnlineShop.Controllers
 {
-    public class CategoriesController : Controller
+    public class ApplicationUsersController : Controller
     {
-
-
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Categories
+        // GET: ApplicationUsers
         public ActionResult Index()
         {
-            return View(db.categories.ToList());
-        }
-        
-        [Authorize(Roles ="Admin")]
-         public ActionResult Admin_Index()
-        {
-            return View(db.categories.ToList());
+            return View(db.ApplicationUsers.ToList());
         }
 
-        // GET: Categories/Details/5
-        public ActionResult Details(int? id)
+        // GET: ApplicationUsers/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.categories.Find(id);
-            if (category == null)
+            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(applicationUser);
         }
 
-        // GET: Categories/Create
+        // GET: ApplicationUsers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: ApplicationUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name")] Category category)
+        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.categories.Add(category);
+                db.ApplicationUsers.Add(applicationUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(applicationUser);
         }
 
-        // GET: Categories/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ApplicationUsers/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.categories.Find(id);
-            if (category == null)
+            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(applicationUser);
         }
 
-        // POST: Categories/Edit/5
+        // POST: ApplicationUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(applicationUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(applicationUser);
         }
 
-        // GET: Categories/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: ApplicationUsers/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.categories.Find(id);
-            if (category == null)
+            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(applicationUser);
         }
 
-        // POST: Categories/Delete/5
+        // POST: ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Category category = db.categories.Find(id);
-            IEnumerable<Product> modele = db.products.Where(p => p.cat_pro.Id == id);
-            foreach(var prop in modele)
-            {
-                db.products.Remove(prop);
-            }
-
-
-            db.categories.Remove(category);
+            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
+            db.ApplicationUsers.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
