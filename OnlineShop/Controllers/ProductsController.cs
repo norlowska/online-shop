@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
+using OnlineShop.ViewModels;
 
 namespace OnlineShop.Controllers
 {
@@ -17,8 +18,11 @@ namespace OnlineShop.Controllers
 
         public ActionResult Index()
         {
-            var moder = db.products.ToList();
-            return View(moder);
+            ShopViewModel model = new ShopViewModel();
+            model.Products = db.products.ToList();
+            model.Categories = db.categories.ToList();
+
+            return View(model);
         }
 
         // GET: Products
@@ -49,7 +53,7 @@ namespace OnlineShop.Controllers
 
             return RedirectToRoute(new
             {
-                controller = "Categories",
+                controller = "Products",
                 action = "Index",
 
             });

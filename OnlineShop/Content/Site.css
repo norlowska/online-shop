@@ -29,7 +29,8 @@ a, a:hover {
 }
 
 #logo {
-    margin-left: 75px;
+    margin-left: 60px;
+    margin-right:60px;
     margin-bottom: 30px;
     display: block;
 }
@@ -46,7 +47,7 @@ a, a:hover {
     z-index: 0;
     position: fixed;
     padding: 50px 0;
-    width: 350px;
+    width: 320px;
     height: 100vh;
     background-color: #ffffff;
 }
@@ -103,8 +104,8 @@ nav {
     }
 
 .content {
-    margin-left: 350px;
-    height: 1000px;
+    margin-left: 320px;
+    height: 100%;
 }
 
 .container {
@@ -299,4 +300,14 @@ nav {
 
 .form-control {
     font-size: 17px;
+}
+
+.shop-sidebar {
+    min-height:100%;
+    background-color:#f5f5f5;
+    padding: 100px 40px;
+}
+
+.products-area {
+    padding: 50px;
 }

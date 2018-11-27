@@ -11,10 +11,13 @@
     <div class="row">
         <ul class="breadcrumb">
             <li>@Html.ActionLink("HOME", "Index", "Home")</li>
-            <li>@Html.ActionLink("STORE", "Index", "Categories")</li>
-            @* dla każdej kategorii breadcrumb*@
-            <li></li>
-            @*a tu nazwa produktu*@
+            <li>@Html.ActionLink("STORE", "Index", "Products")</li>
+            @*@foreach (var category in @Model.cat_pro)
+            {
+                <li>category.name</li>
+            }*@
+            <li>@Model.cat_pro.name</li>
+
             <li class="active">@Html.DisplayFor(modelItem => @Model.name)</li>
         </ul>
     </div>

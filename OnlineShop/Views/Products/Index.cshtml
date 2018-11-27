@@ -1,46 +1,52 @@
-﻿@model IEnumerable<OnlineShop.Models.Product>
+﻿@model OnlineShop.ViewModels.ShopViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
+<div class="row">
+    <div class="col-md-2 shop-sidebar">
+        <h3>Categories</h3>
+        <ul class="list-unstyled">
+            @foreach (var category in Model.Categories)
+            {
+                <li>@Html.ActionLink(category.name, "Details", "Categories", new { id = category.Id }, null)</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-10 products-area">
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.Raw(item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
+                        @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
+                    </td>
+                </tr>
+            }
 
-
-<table class="table">
-   
-    <tr>
-
-
-
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.Raw(item.description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.ActionLink("buy now", "buy/"+ item.Id, "Home")
-                @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
-            </td>
-        </tr>
-    }
-
-</table>
+        </table>
+    </div>
+</div>
