@@ -9,5 +9,8 @@ namespace OnlineShop.Models
     {
         public String name { get; set; }
         virtual public ICollection<Product> Product { get; set; }
+
+        virtual public Category parent { get; set; }
+        virtual public ICollection<Product> children { get; set; }
     }
 }

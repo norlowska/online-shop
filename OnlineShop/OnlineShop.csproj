@@ -226,6 +226,7 @@
     <Compile Include="Models\ApplicationUserModels.cs" />
     <Compile Include="Models\IEntit.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
