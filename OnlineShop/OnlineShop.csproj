@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201811262038015_DataAnnotations.Designer.cs">
       <DependentUpon>201811262038015_DataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811270107583_Product filePath.cs" />
+    <Compile Include="Migrations\201811270107583_Product filePath.Designer.cs">
+      <DependentUpon>201811270107583_Product filePath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -356,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811262038015_DataAnnotations.resx">
       <DependentUpon>201811262038015_DataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811270107583_Product filePath.resx">
+      <DependentUpon>201811270107583_Product filePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
