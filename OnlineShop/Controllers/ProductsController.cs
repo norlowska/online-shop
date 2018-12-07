@@ -179,7 +179,7 @@ namespace OnlineShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product product)
         {
-            if (id == null)
+            if (product != null)
             {
                 if (Request.Files.Count > 0)
                 {
@@ -202,7 +202,7 @@ namespace OnlineShop.Controllers
                 return RedirectToAction("Index");
             }
 
-            var prduktToUpdate = db.products.Find(id);
+            var prduktToUpdate = db.products.Find(product.Id);
             if (TryUpdateModel(prduktToUpdate, "",
                new string[] { "name", "description", "price", "car_pod.id" }))
             {

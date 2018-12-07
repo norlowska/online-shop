@@ -5,23 +5,9 @@
 }
 
 <h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
 <div class="form-horizontal">
     <h4>Produkty</h4>
-    <hr />
-    @Html.ValidationSummary(true)
-    @Html.HiddenFor(model => model.Id)
-    <div class="form-group">
-        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-        </div>
-    </div>
+
     <div class="row details-row">
         @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -32,13 +18,14 @@
         <div class="col-sm-12 col-lg-5 text-center product-img">
             
             @{
-                var temp = Model.filePath.Split('\\');
+                
                 if (Model.filePath == null)
                 {
                     <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
                 }
                 else
                 {
+                    var temp = Model.filePath.Split('\\');
                     <img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
                 }
 

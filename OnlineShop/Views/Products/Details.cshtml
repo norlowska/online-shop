@@ -24,7 +24,19 @@
     <div class="row details-row">
 
         <div class="col-sm-12 col-lg-5 text-center">
-            <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
+            @{
+
+                if (Model.filePath == null)
+                {
+                    <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
+                }
+                else
+                {
+                    var temp = Model.filePath.Split('\\');
+                    <img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
+                }
+
+            }
         </div>
         <div class="col-sm-12 col-lg-7 justify-content-center">
             <div class="details-content">
