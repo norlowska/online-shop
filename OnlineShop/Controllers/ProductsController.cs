@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
 using OnlineShop.ViewModels;
+using System.Web.Helpers;
 
 namespace OnlineShop.Controllers
 {
@@ -184,14 +185,51 @@ namespace OnlineShop.Controllers
                 if (Request.Files.Count > 0)
                 {
                     HttpPostedFileBase file = Request.Files[0];
+                    
                     if (file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
+
                         fileName = fileName.Replace(' ','_');
                         product.filePath = Path.Combine(
                             Server.MapPath("~/Content/Images/"), fileName);
                         file.SaveAs(product.filePath);
+                        
+                        WebImage file2 = new WebImage(file.InputStream);
+
+                        double ratio = (double)file2.Height / (double)file2.Width;
+
+                        while(file2.Width > 100 && file2.Height > 100)
+                        {
+                            if (file2.Width > file2.Height)
+                            {
+                                file2.Resize(100, (int)Math.Round(100 * ratio));
+                            }
+
+                            if (file2.Height > file2.Width)
+                            {
+                                file2.Resize((int)Math.Round(100 / ratio), 100);
+                            }
+                        }
+                        var name = fileName.Split('.');
+                        var path = "~/Content/Images/";
+                        for (int i = 0; i < name.Length; i++)
+                        {
+                            
+                            if (i < name.Length - 2)
+                            {
+                                path = path + name[i] + '.';
+                            }
+                            else
+                            {
+                                path = path + fileName.Split('.')[i] + "_smaller." + fileName.Split('.')[++i];
+                            }
+                            
+                        }
+                        file2.Save(path);
+
                     }
+                    
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
