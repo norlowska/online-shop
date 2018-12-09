@@ -113,6 +113,7 @@ namespace OnlineShop.Controllers
             {
                 return HttpNotFound();
             }
+            product.toDictionary();
             return View(product);
         }
 
@@ -173,6 +174,7 @@ namespace OnlineShop.Controllers
                 return HttpNotFound();
             }
             DropDownList();
+            produkt.toDictionary();
             return View(produkt);
         }
 
@@ -185,21 +187,23 @@ namespace OnlineShop.Controllers
                 if (Request.Files.Count > 0)
                 {
                     HttpPostedFileBase file = Request.Files[0];
-                    
+
                     if (file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
 
-                        fileName = fileName.Replace(' ','_');
-                        product.filePath = Path.Combine(
+                        fileName = fileName.Replace(' ', '_');
+                        var filePath = Path.Combine(
                             Server.MapPath("~/Content/Images/"), fileName);
-                        file.SaveAs(product.filePath);
-                        
+                        file.SaveAs(filePath);
+                        product.image["normal"] = "/Content/Images/" + fileName;
+
+
                         WebImage file2 = new WebImage(file.InputStream);
 
                         double ratio = (double)file2.Height / (double)file2.Width;
 
-                        while(file2.Width > 100 && file2.Height > 100)
+                        while (file2.Width > 100 && file2.Height > 100)
                         {
                             if (file2.Width > file2.Height)
                             {
@@ -213,23 +217,27 @@ namespace OnlineShop.Controllers
                         }
                         var name = fileName.Split('.');
                         var path = "~/Content/Images/";
+                        var pathSave = "/Content/Images/";
                         for (int i = 0; i < name.Length; i++)
                         {
-                            
+
                             if (i < name.Length - 2)
                             {
                                 path = path + name[i] + '.';
+                                pathSave = pathSave + name[i] + '.';
                             }
                             else
                             {
-                                path = path + fileName.Split('.')[i] + "_smaller." + fileName.Split('.')[++i];
+                                path = path + fileName.Split('.')[i] + "_smaller." + fileName.Split('.')[i+1];
+                                pathSave = pathSave + fileName.Split('.')[i] + "_smaller." + fileName.Split('.')[++i];
                             }
-                            
+
                         }
                         file2.Save(path);
+                        product.image["smaller"] = pathSave;
 
                     }
-                    
+                    product.toJson();
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
