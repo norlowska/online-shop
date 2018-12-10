@@ -83,10 +83,10 @@ namespace OnlineShop.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(RegisterViewModel model,string password)
+        public ActionResult Create(string Email, string password)
         {
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser { UserName = Email ,Email = Email };
             UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(_db);
             ApplicationUserManager userManager = new ApplicationUserManager(store);
             var result =  userManager.CreateAsync(user, password);
