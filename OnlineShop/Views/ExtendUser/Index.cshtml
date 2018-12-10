@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineShop.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+}
+ Delete Create
+<h2>Index</h2>
+@Html.ActionLink("Create New", "Create")
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.Logins)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}

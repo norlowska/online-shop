@@ -21,6 +21,7 @@ namespace OnlineShop.Controllers
         
         public ActionResult Index()
         {
+
             ShopViewModel model = new ShopViewModel();
             model.Products = db.products.ToList();
             model.Categories = db.categories.ToList();
@@ -30,6 +31,7 @@ namespace OnlineShop.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index_admin()
         {
+            var m = User.Identity.Name;
             var moder = db.products.ToList();
             return View(moder);
         }

@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineShop.Models;
 
+
+
 namespace OnlineShop.Controllers
 {
     [Authorize]

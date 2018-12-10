@@ -27,6 +27,10 @@ namespace OnlineShop.Controllers
             return View();
         }
 
+
+
+
+
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DbController.cs" />
+    <Compile Include="Controllers\ExtendUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -229,6 +230,10 @@
     <Compile Include="Migrations\201812092118017_FileList.cs" />
     <Compile Include="Migrations\201812092118017_FileList.Designer.cs">
       <DependentUpon>201812092118017_FileList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812102015428_user.cs" />
+    <Compile Include="Migrations\201812102015428_user.Designer.cs">
+      <DependentUpon>201812102015428_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -346,6 +351,9 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\ExtendUser\Index.cshtml" />
+    <Content Include="Views\ExtendUser\Edit.cshtml" />
+    <Content Include="Views\ExtendUser\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -377,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812092118017_FileList.resx">
       <DependentUpon>201812092118017_FileList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812102015428_user.resx">
+      <DependentUpon>201812102015428_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
