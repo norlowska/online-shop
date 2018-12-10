@@ -9,7 +9,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
-using OnlineShop.ViewModels;
 
 namespace OnlineShop.Controllers
 {
@@ -20,12 +19,10 @@ namespace OnlineShop.Controllers
         
         public ActionResult Index()
         {
-            ShopViewModel model = new ShopViewModel();
-            model.Products = db.products.ToList();
-            model.Categories = db.categories.ToList();
-
+            var model = db.products.ToList();
             return View(model);
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Index_admin()
         {
@@ -54,9 +51,6 @@ namespace OnlineShop.Controllers
             var model = db.products.Single(p => p.Id == id);
             if (model == null)
                 return HttpNotFound();
-
-
-
             Koszyk.Add(model);
 
             return RedirectToRoute(new
@@ -93,10 +87,6 @@ namespace OnlineShop.Controllers
                 action = "Index",
 
             });
-
-
-
-
         }
 
 
@@ -121,11 +111,6 @@ namespace OnlineShop.Controllers
             DropDownList();
             return View();
         }
-
-
-
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -264,6 +249,13 @@ namespace OnlineShop.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [ChildActionOnly]
+        public ActionResult CategoriesMenu()
+        {
+            var categories = db.categories.ToList();
+            return PartialView(categories);
         }
     }
 }

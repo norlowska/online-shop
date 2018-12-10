@@ -222,9 +222,9 @@
     <Compile Include="Migrations\201811270107583_Product filePath.Designer.cs">
       <DependentUpon>201811270107583_Product filePath.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811271349062_niewiemtest.cs" />
-    <Compile Include="Migrations\201811271349062_niewiemtest.Designer.cs">
-      <DependentUpon>201811271349062_niewiemtest.cs</DependentUpon>
+    <Compile Include="Migrations\201812101610152_CategoriesTree.cs" />
+    <Compile Include="Migrations\201812101610152_CategoriesTree.Designer.cs">
+      <DependentUpon>201812101610152_CategoriesTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -238,7 +238,6 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\ShopViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -275,12 +274,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="slick\ajax-loader.gif" />
-    <Content Include="slick\fonts\slick.svg" />
-    <Content Include="slick\slick-theme.css" />
-    <Content Include="slick\slick.css" />
-    <Content Include="slick\slick.js" />
-    <Content Include="slick\slick.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -315,14 +308,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="slick\config.rb" />
-    <Content Include="slick\fonts\slick.eot" />
-    <Content Include="slick\fonts\slick.ttf" />
-    <Content Include="slick\fonts\slick.woff" />
-    <Content Include="slick\slick-theme.less" />
-    <Content Include="slick\slick-theme.scss" />
-    <Content Include="slick\slick.less" />
-    <Content Include="slick\slick.scss" />
     <Content Include="Views\Home\Buy.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
@@ -342,9 +327,11 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Products\CategoriesMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="Views\Db\" />
   </ItemGroup>
   <ItemGroup>
@@ -368,8 +355,8 @@
     <EmbeddedResource Include="Migrations\201811270107583_Product filePath.resx">
       <DependentUpon>201811270107583_Product filePath.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811271349062_niewiemtest.resx">
-      <DependentUpon>201811271349062_niewiemtest.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812101610152_CategoriesTree.resx">
+      <DependentUpon>201812101610152_CategoriesTree.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

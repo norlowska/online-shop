@@ -12,9 +12,6 @@ namespace OnlineShop.Controllers
 {
     public class CategoriesController : Controller
     {
-
-
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Categories
@@ -47,6 +44,9 @@ namespace OnlineShop.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            var items = db.categories.ToList();
+            ViewBag.CategoriesList = items;
+
             return View();
         }
 

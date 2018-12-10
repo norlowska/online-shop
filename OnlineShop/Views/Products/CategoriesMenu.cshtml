@@ -1,0 +1,28 @@
+﻿@model IEnumerable<OnlineShop.Models.Category>
+@*var rootElements = Model.Where(c => c.parent == null).OrderBy(c => c.Id);*@
+
+@helper DisplayCategoriesTree(IEnumerable<OnlineShop.Models.Category> categories)
+{
+    <ul class="categories-list list-unstyled">
+        @foreach (var category in categories)
+        {
+            <li>
+                @Html.ActionLink(category.name, "Details", "Categories", new { id = category.Id }, null)
+                @{
+                    var children = Model.Where(c => c.parent == category).OrderBy(c => c.Id);
+
+                    if (children.Count() > 0)
+                    {
+                        <ul>
+                            @DisplayCategoriesTree(children)
+                        </ul>
+                    }
+                }
+            </li>
+                    }
+    </ul>
+}
+
+@DisplayCategoriesTree(Model.Where(c => c.parent == null).OrderBy(c => c.Id))
+
+
