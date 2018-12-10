@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -230,6 +231,10 @@
     <Compile Include="Migrations\201812092118017_FileList.Designer.cs">
       <DependentUpon>201812092118017_FileList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812101444236_FileList2.cs" />
+    <Compile Include="Migrations\201812101444236_FileList2.Designer.cs">
+      <DependentUpon>201812101444236_FileList2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -349,6 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Files\" />
     <Folder Include="Views\Db\" />
   </ItemGroup>
   <ItemGroup>
@@ -377,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812092118017_FileList.resx">
       <DependentUpon>201812092118017_FileList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101444236_FileList2.resx">
+      <DependentUpon>201812101444236_FileList2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

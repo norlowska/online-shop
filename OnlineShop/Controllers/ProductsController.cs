@@ -131,7 +131,7 @@ namespace OnlineShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro")]Product product)
+        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro")]Product product, String fileDescription)
         {
             var model = db.categories.SingleOrDefault(p => p.Id == product.cat_pro.Id);
             if (model != null)
@@ -146,8 +146,92 @@ namespace OnlineShop.Controllers
 
             try
             {
+                product.toDictionary();
                 if (ModelState.IsValid)
                 {
+
+                    if (product != null)
+                    {
+                        if (Request.Files.Count > 0)
+                        {
+                            HttpPostedFileBase image = Request.Files["filePath"];
+
+
+                            for (int i = 1; i < Request.Files.Count; i++)
+                            {
+                                HttpPostedFileBase file = Request.Files[i];
+
+                                if (file.ContentLength > 0)
+                                {
+                                    var fileName = Path.GetFileName(file.FileName);
+
+                                    fileName = fileName.Replace(' ', '_');
+                                    var filePath = Path.Combine(
+                                        Server.MapPath("~/Content/Files/"), fileName);
+                                    file.SaveAs(filePath);
+                                    List<String> list = new List<String>();
+                                    list.Add("/Content/Files/" + fileName);
+                                    list.Add(fileDescription);
+                                    product.files.Add(list);
+
+
+                                }
+                            }
+
+                            if (image.ContentLength > 0)
+                            {
+                                var fileName = Path.GetFileName(image.FileName);
+
+                                fileName = fileName.Replace(' ', '_');
+                                var filePath = Path.Combine(
+                                    Server.MapPath("~/Content/Images/"), fileName);
+                                image.SaveAs(filePath);
+                                product.image["normal"] = "/Content/Images/" + fileName;
+
+
+                                WebImage imageSmaller = new WebImage(image.InputStream);
+
+                                double ratio = (double)imageSmaller.Height / (double)imageSmaller.Width;
+
+                                while (imageSmaller.Width > 100 && imageSmaller.Height > 100)
+                                {
+                                    if (imageSmaller.Width > imageSmaller.Height)
+                                    {
+                                        imageSmaller.Resize(100, (int)Math.Round(100 * ratio));
+                                    }
+
+                                    if (imageSmaller.Height > imageSmaller.Width)
+                                    {
+                                        imageSmaller.Resize((int)Math.Round(100 / ratio), 100);
+                                    }
+                                }
+                                var name = fileName.Split('.');
+                                var path = "~/Content/Images/";
+                                var pathSave = "/Content/Images/";
+                                for (int i = 0; i < name.Length; i++)
+                                {
+
+                                    if (i < name.Length - 2)
+                                    {
+                                        path = path + name[i] + '.';
+                                        pathSave = pathSave + name[i] + '.';
+                                    }
+                                    else
+                                    {
+                                        path = path + fileName.Split('.')[i] + "_smaller." + fileName.Split('.')[i + 1];
+                                        pathSave = pathSave + fileName.Split('.')[i] + "_smaller." + fileName.Split('.')[++i];
+                                    }
+
+                                }
+                                imageSmaller.Save(path);
+                                product.image["smaller"] = pathSave;
+
+                            }
+                            product.toJson();
+                        }
+
+                    }
+
                     db.products.Add(product);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -180,39 +264,62 @@ namespace OnlineShop.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product, String fileDescription)
         {
             if (product != null)
             {
+                product.toDictionary();
                 if (Request.Files.Count > 0)
                 {
-                    HttpPostedFileBase file = Request.Files[0];
+                    HttpPostedFileBase image = Request.Files["filePath"];
 
-                    if (file.ContentLength > 0)
+
+                    for (int i = 1; i < Request.Files.Count; i++)
                     {
-                        var fileName = Path.GetFileName(file.FileName);
+                        HttpPostedFileBase file = Request.Files[i];
+
+                        if (file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+
+                            fileName = fileName.Replace(' ', '_');
+                            var filePath = Path.Combine(
+                                Server.MapPath("~/Content/Files/"), fileName);
+                            file.SaveAs(filePath);
+                            List<String> list = new List<String>();
+                            list.Add("/Content/Files/" + fileName);
+                            list.Add(fileDescription);
+                            product.files.Add(list);
+
+
+                        }
+                    }
+
+                    if (image.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(image.FileName);
 
                         fileName = fileName.Replace(' ', '_');
                         var filePath = Path.Combine(
                             Server.MapPath("~/Content/Images/"), fileName);
-                        file.SaveAs(filePath);
+                        image.SaveAs(filePath);
                         product.image["normal"] = "/Content/Images/" + fileName;
 
 
-                        WebImage file2 = new WebImage(file.InputStream);
+                        WebImage imageSmaller = new WebImage(image.InputStream);
 
-                        double ratio = (double)file2.Height / (double)file2.Width;
+                        double ratio = (double)imageSmaller.Height / (double)imageSmaller.Width;
 
-                        while (file2.Width > 100 && file2.Height > 100)
+                        while (imageSmaller.Width > 100 && imageSmaller.Height > 100)
                         {
-                            if (file2.Width > file2.Height)
+                            if (imageSmaller.Width > imageSmaller.Height)
                             {
-                                file2.Resize(100, (int)Math.Round(100 * ratio));
+                                imageSmaller.Resize(100, (int)Math.Round(100 * ratio));
                             }
 
-                            if (file2.Height > file2.Width)
+                            if (imageSmaller.Height > imageSmaller.Width)
                             {
-                                file2.Resize((int)Math.Round(100 / ratio), 100);
+                                imageSmaller.Resize((int)Math.Round(100 / ratio), 100);
                             }
                         }
                         var name = fileName.Split('.');
@@ -233,14 +340,11 @@ namespace OnlineShop.Controllers
                             }
 
                         }
-                        file2.Save(path);
+                        imageSmaller.Save(path);
                         product.image["smaller"] = pathSave;
 
                     }
                     product.toJson();
-                    db.Entry(product).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
                 }
 
                 db.Entry(product).State = EntityState.Modified;
@@ -266,6 +370,39 @@ namespace OnlineShop.Controllers
             }
             DropDownList(prduktToUpdate.cat_pro);
             return View(prduktToUpdate);
+        }
+
+        public ActionResult DownloadFile(String list, int id)
+        {
+
+            //string path = AppDomain.CurrentDomain.BaseDirectory + "FolderName/";
+            try
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory + list;
+                byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+                String[] temp = list.Split('/');
+                string fileName = temp[temp.Length - 1];
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            }
+            catch(FileNotFoundException)
+            {
+                Product produkt = db.products.Find(id);
+                produkt.toDictionary();
+                
+                for (int i = 0; i < produkt.files.Count; i++)
+                {
+                    List<Object> collection = new List<Object>((IEnumerable<Object>)produkt.files[i]);
+                    if ((String)collection[0] == list)
+                    {
+                        produkt.files.RemoveAt(i);
+                        produkt.toJson();
+                        db.Entry(produkt).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            
         }
 
         private void DropDownList(object selectedDepartment = null)

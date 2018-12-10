@@ -15,13 +15,12 @@ namespace OnlineShop.Models
         
         public Product()
         {
-            image = new Dictionary<string, string>();
-            
-            //files = new List<String>();
+            image = new Dictionary<String, String>();
+            files = new List<object>();
         }
 
         [NotMapped]
-        public Dictionary<string, string> image { get; set; }
+        public Dictionary<String, String> image { get; set; }
 
         [Required, MaxLength(120)]
         public String name { get; set; }
@@ -31,9 +30,9 @@ namespace OnlineShop.Models
         public decimal price { get; set; }
 
         public string jsonDictionary { get; set; }
+        public string jsonList { get; set; }
 
-        //public IList<String> files { get; set; }
-
+        public List<object> files { get; set; }
         public int count { get; set; }
 
         public virtual Category cat_pro { get; set; }
@@ -43,17 +42,25 @@ namespace OnlineShop.Models
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             jsonDictionary = serializer.Serialize((object)image);
+            jsonList = serializer.Serialize((object)files);
+
 
         }
 
         public void toDictionary()
         {
-            if(jsonDictionary != null)
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            if (jsonDictionary != null)
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                image = serializer.Deserialize<Dictionary<string, string>>(jsonDictionary);
+                image = serializer.Deserialize<Dictionary<String, String>>(jsonDictionary);
             }
-            
+
+            if(jsonList != null)
+            {
+                files = serializer.Deserialize<List<object>>(jsonList);
+            }
+
         }
         
     }
