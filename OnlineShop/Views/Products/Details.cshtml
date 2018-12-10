@@ -26,16 +26,34 @@
         <div class="col-sm-12 col-lg-5 text-center">
             @{
 
-                if (Model.filePath == null)
+                if (!Model.image.ContainsKey("smaller"))
                 {
                     <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
                 }
                 else
                 {
-                    var temp = Model.filePath.Split('\\');
-                    <img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
+                    <img class="img-responsive" src=@(Model.image["smaller"]) width="500" height="500" />
                 }
 
+            }
+            @{
+                for (int i = 0; i < Model.files.Count; i++)
+                {
+                    List<Object> collection = new List<Object>((IEnumerable<Object>)Model.files[i]);
+                    String file = (String)collection[0];
+                    if (Model.files[i] is IEnumerable<String>)
+                    {
+
+                        var enumerator = ((IEnumerable<String>)Model.files[i]).GetEnumerator();
+                        while (enumerator.MoveNext())
+                        {
+                            //list2.Add(enumerator.Current);
+                        }
+                    }
+
+
+                    @Html.ActionLink("Click here to download", "DownloadFile", new { list = file, id = Model.Id });
+                }
             }
         </div>
         <div class="col-sm-12 col-lg-7 justify-content-center">

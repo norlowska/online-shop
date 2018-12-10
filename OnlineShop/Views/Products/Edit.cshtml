@@ -15,25 +15,30 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
-        <div class="col-sm-12 col-lg-5 text-center product-img">
-            
-            @{
-                
-                if (Model.filePath == null)
-                {
-                    <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
-                }
-                else
-                {
-                    var temp = Model.filePath.Split('\\');
-                    <img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
+            @Html.HiddenFor(model => model.jsonDictionary)
+            @Html.HiddenFor(model => model.jsonList)
+            <div class="col-sm-12 col-lg-5 text-center product-img">
+
+                @{
+
+                    if (!Model.image.ContainsKey("normal"))
+                    {
+                        <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
+                    }
+                    else
+                    {
+                        //var temp = Model.filePath.Split('\\');
+                        //<img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
+                        <img class="img-responsive" src=@(Model.image["normal"]) width="500" height="500" />
+                    }
+
                 }
 
-            }
-
-            <input type="file" name="filePath" id="filePath" runat="server" />
-            @Html.ValidationMessageFor(model => model.filePath)
-        </div>
+                <input type="file" name="filePath" id="filePath" runat="server" />
+                <input type="file" name="filePath2" id="filePath2" runat="server" />
+                <input type="text" name="fileDescription" />
+                @Html.ValidationMessageFor(model => model.image)
+            </div>
             <div class="col-sm-12 col-lg-7 justify-content-center">
                 <div class="details-content">
                     <div class="product-name">
