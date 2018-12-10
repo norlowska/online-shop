@@ -27,6 +27,7 @@ namespace OnlineShop.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index_admin()
         {
+            var m = User.Identity.Name;
             var moder = db.products.ToList();
             return View(moder);
         }

@@ -8,6 +8,15 @@ namespace OnlineShop.Models
 {
     public class ApplicationUser : IdentityUser
     {
+
+        public string miasto { get; set; }
+        public string ulica { get; set; }
+
+        public string nr { get; set; }
+        public string kod_pocztowy{ get;set;}
+
+
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Element authenticationType musi pasować do elementu zdefiniowanego w elemencie CookieAuthenticationOptions.AuthenticationType
