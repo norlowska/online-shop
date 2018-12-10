@@ -17,6 +17,10 @@ namespace OnlineShop.Models
         public DbSet<Category> categories { get; set; }
         public DbSet<Comment> comments { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
