@@ -1,0 +1,12 @@
+﻿@model int
+@{
+    ViewBag.Title = "Zakupiono";
+}
+<h2>Zamówienie przyjęte</h2>
+<p>Dziękujemy za zamówienie! Numer zamówienia: @Model</p>
+<p>
+    Kup więcej w naszym 
+    @Html.ActionLink("sklepie",
+"Index", "Home")
+</p>
+

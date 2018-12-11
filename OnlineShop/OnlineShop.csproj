@@ -199,12 +199,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DbController.cs" />
     <Compile Include="Controllers\ExtendUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,18 +234,36 @@
     <Compile Include="Migrations\201812102015428_user.Designer.cs">
       <DependentUpon>201812102015428_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812101839528_Orders-And-Cart.cs" />
+    <Compile Include="Migrations\201812101839528_Orders-And-Cart.Designer.cs">
+      <DependentUpon>201812101839528_Orders-And-Cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111021092_Orderu-Sprawdzacze.cs" />
+    <Compile Include="Migrations\201812111021092_Orderu-Sprawdzacze.Designer.cs">
+      <DependentUpon>201812111021092_Orderu-Sprawdzacze.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111032507_Orderu-Sprawdzacze2.cs" />
+    <Compile Include="Migrations\201812111032507_Orderu-Sprawdzacze2.Designer.cs">
+      <DependentUpon>201812111032507_Orderu-Sprawdzacze2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ApplicationUserModels.cs" />
     <Compile Include="Models\IEntit.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+    <Compile Include="ViewModels\ShopViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -333,6 +353,10 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\Products\CategoriesMenu.cshtml" />
     <Content Include="Views\ExtendUser\Index.cshtml" />
     <Content Include="Views\ExtendUser\Edit.cshtml" />
@@ -370,6 +394,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812102015428_user.resx">
       <DependentUpon>201812102015428_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101839528_Orders-And-Cart.resx">
+      <DependentUpon>201812101839528_Orders-And-Cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111021092_Orderu-Sprawdzacze.resx">
+      <DependentUpon>201812111021092_Orderu-Sprawdzacze.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111032507_Orderu-Sprawdzacze2.resx">
+      <DependentUpon>201812111032507_Orderu-Sprawdzacze2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

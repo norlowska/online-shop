@@ -81,6 +81,7 @@ namespace OnlineShop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    MigrateShoppingCart(model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -157,6 +158,7 @@ namespace OnlineShop.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    MigrateShoppingCart(model.Email);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -425,6 +427,12 @@ namespace OnlineShop.Controllers
             base.Dispose(disposing);
         }
 
+        private void MigrateShoppingCart(string UserName)
+        {
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            cart.MigrateCart(UserName);
+            Session[ShoppingCart.CartSessionKey] = UserName;
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
