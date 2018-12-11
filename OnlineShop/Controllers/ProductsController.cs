@@ -111,13 +111,14 @@ namespace OnlineShop.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            DropDownList();
+            var items = db.categories.ToList();
+            ViewBag.CategoriesList = items;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro")]Product product, String fileDescription)
+        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro.Id")]Product product, String fileDescription)
         {
             var model = db.categories.SingleOrDefault(p => p.Id == product.cat_pro.Id);
             if (model != null)
@@ -228,7 +229,6 @@ namespace OnlineShop.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.)
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
             }
-            DropDownList(product.cat_pro);
             return View(product);
         }
 
@@ -243,7 +243,6 @@ namespace OnlineShop.Controllers
             {
                 return HttpNotFound();
             }
-            DropDownList();
             produkt.toDictionary();
             return View(produkt);
         }
@@ -354,7 +353,6 @@ namespace OnlineShop.Controllers
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
             }
-            DropDownList(prduktToUpdate.cat_pro);
             return View(prduktToUpdate);
         }
 
@@ -390,15 +388,6 @@ namespace OnlineShop.Controllers
             }
             
         }
-
-        private void DropDownList(object selectedDepartment = null)
-        {
-            var departmentsQuery = db.categories.ToList();
-
-            ViewBag.cat_pro = new SelectList(departmentsQuery, "id", "name", selectedDepartment);
-        }
-
-
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)

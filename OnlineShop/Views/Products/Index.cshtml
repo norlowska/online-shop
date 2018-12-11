@@ -3,44 +3,47 @@
 @{
     ViewBag.Title = "Products";
 }
-<div class="row">
-    <div class="col-md-2 shop-sidebar">
-        <h3>Categories</h3>
-        @{ Html.RenderAction("CategoriesMenu", "Products");}
-    </div>
-    <div class="col-md-10 products-area">
-        <table class="table">
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Price
-                </th>
-                <th></th>
-            </tr>
-            @foreach (var item in Model)
+<div class="col-md-2 shop-sidebar">
+    <h3>Categories</h3>
+    @{ Html.RenderAction("CategoriesMenu", "Products");}
+</div>
+<div class="col-md-10 products-area">
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
-                    </td>
-                    <td>
-                        @Html.Raw(item.description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.price)
-                    </td>
-                    <td>
-                        @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
-                        @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
-                    </td>
-                </tr>
-            }
-
-        </table>
-    </div>
+            <tr>
+                <td>
+                    @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @Html.Raw(item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cat_pro.name)
+                </td>
+                <td>
+                    @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
+                    @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
+                </td>
+            </tr>
+        }
+    </table>
 </div>

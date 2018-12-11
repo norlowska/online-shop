@@ -1,19 +1,17 @@
 ﻿@model IEnumerable<OnlineShop.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Administration Panel";
 }
 
-@if(User.IsInRole("Admin"))
-{ 
-<h2>Panel Administracyjny</h2>
-
-<ul>
-    @Html.ActionLink("Produkty", "Index_admin", "Products")
-    @Html.ActionLink("Categorie", "Admin_Index", "Categories")
-    @Html.ActionLink("User", "Index", "ExtendUser")
-    
-
-</ul>
-
+@if (User.IsInRole("Admin"))
+{
+    <div class="col-md-12">
+        <h2>Administration Panel</h2>
+        <ul style="list-style-type:square;">
+            <li>@Html.ActionLink("Manage products", "Index_admin", "Products")</li>
+            <li>@Html.ActionLink("Manage categories", "Admin_Index", "Categories")</li>
+            <li>@Html.ActionLink("Manage users", "Index", "ExtendUser")</li>
+        </ul>
+    </div>
 }

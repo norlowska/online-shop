@@ -1,21 +1,32 @@
 ﻿@model IEnumerable<OnlineShop.Models.ApplicationUser>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users list";
 }
- Delete Create
-<h2>Index</h2>
-@Html.ActionLink("Create New", "Create")
+<div class="col-md-12">
+    <h2>Users list</h2>
+    <table class="table">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-            @Html.DisplayFor(modelItem => item.Logins)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+
+    <h4>@Html.ActionLink("Create new", "Create")</h4>
+</div>

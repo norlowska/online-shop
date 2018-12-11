@@ -123,12 +123,17 @@
     border-radius: 0 !important;
 }
 
+html, body {
+  
+}
+
 body {
     width: 100%;
     font-family: 'Lato', sans-serif !important;
     font-size: 17px;
+    background-color: #a8c6e821;
 }
-
+.equal, .container-fluid {height:100%;}
 h1, h2 {
     font-family: 'Roboto', sans-serif !important;
     color: #131212;
@@ -143,14 +148,17 @@ button {
     color: #131212;
 }
 
-a, a:hover {
+a {
     text-decoration: none;
     color: #131212;
 }
 
+a:hover {
+    text-decoration: none;
+    color: rgba(0,123,255, 0.77);
+}
+
 #logo {
-    margin-left: 60px;
-    margin-right:60px;
     margin-bottom: 30px;
     display: block;
 }
@@ -162,22 +170,14 @@ a, a:hover {
 
 
 .sidenav {
-    top: 0;
-    left: 0;
-    z-index: 0;
-    position: fixed;
-    padding: 50px 0;
-    width: 320px;
-    height: 100vh;
+   padding: 50px 0;
     background-color: #ffffff;
 }
 
     .sidenav li a {
-        position: relative;
-        z-index: 1;
-        padding: 20px 10px;
+        padding: 20px 20px;
         display: block;
-        line-height: 0.9;
+        line-height: 1.0;
         color: #131212;
         text-transform: uppercase;
         font-family: 'Oswald', sans-serif;
@@ -192,7 +192,7 @@ a, a:hover {
         }
 
 nav {
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     margin-left: 50px;
     margin-right: 50px;
 }
@@ -224,19 +224,11 @@ nav {
     }
 
 .content {
-    margin-left: 320px;
-    height: 100%;
+    padding: 0px;
 }
 
-.container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0px !important;
-    padding: 0px !important;
-}
 
 .carousel, .carousel-inner {
-    width: 100%;
     min-height: 650px !important;
 }
 
