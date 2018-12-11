@@ -118,7 +118,7 @@ namespace OnlineShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro.Id")]Product product, String fileDescription)
+        public ActionResult Create([Bind(Include = "Id,name,description,price,cat_pro")]Product product, String fileDescription)
         {
             var model = db.categories.SingleOrDefault(p => p.Id == product.cat_pro.Id);
             if (model != null)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
@@ -210,41 +210,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811111628486_InitialCreate.cs" />
-    <Compile Include="Migrations\201811111628486_InitialCreate.Designer.cs">
-      <DependentUpon>201811111628486_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811122130140_commend.cs" />
-    <Compile Include="Migrations\201811122130140_commend.Designer.cs">
-      <DependentUpon>201811122130140_commend.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811262038015_DataAnnotations.cs" />
-    <Compile Include="Migrations\201811262038015_DataAnnotations.Designer.cs">
-      <DependentUpon>201811262038015_DataAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811270107583_Product filePath.cs" />
-    <Compile Include="Migrations\201811270107583_Product filePath.Designer.cs">
-      <DependentUpon>201811270107583_Product filePath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812102006162_CategoriesTree.cs" />
-    <Compile Include="Migrations\201812102006162_CategoriesTree.Designer.cs">
-      <DependentUpon>201812102006162_CategoriesTree.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812102015428_user.cs" />
-    <Compile Include="Migrations\201812102015428_user.Designer.cs">
-      <DependentUpon>201812102015428_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812101839528_Orders-And-Cart.cs" />
-    <Compile Include="Migrations\201812101839528_Orders-And-Cart.Designer.cs">
-      <DependentUpon>201812101839528_Orders-And-Cart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111021092_Orderu-Sprawdzacze.cs" />
-    <Compile Include="Migrations\201812111021092_Orderu-Sprawdzacze.Designer.cs">
-      <DependentUpon>201812111021092_Orderu-Sprawdzacze.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111032507_Orderu-Sprawdzacze2.cs" />
-    <Compile Include="Migrations\201812111032507_Orderu-Sprawdzacze2.Designer.cs">
-      <DependentUpon>201812111032507_Orderu-Sprawdzacze2.cs</DependentUpon>
+    <Compile Include="Migrations\201812111357370_Initial.cs" />
+    <Compile Include="Migrations\201812111357370_Initial.Designer.cs">
+      <DependentUpon>201812111357370_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -263,9 +231,12 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
-    <Compile Include="ViewModels\ShopViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-OnlineShop-20181023030908.mdf" />
+    <Content Include="App_Data\aspnet-OnlineShop-20181023030908_log.ldf">
+      <DependentUpon>aspnet-OnlineShop-20181023030908.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\cat-1.jpg" />
@@ -363,9 +334,7 @@
     <Content Include="Views\ExtendUser\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Db\" />
   </ItemGroup>
   <ItemGroup>
@@ -377,32 +346,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811111628486_InitialCreate.resx">
-      <DependentUpon>201811111628486_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811122130140_commend.resx">
-      <DependentUpon>201811122130140_commend.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811262038015_DataAnnotations.resx">
-      <DependentUpon>201811262038015_DataAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811270107583_Product filePath.resx">
-      <DependentUpon>201811270107583_Product filePath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812102006162_CategoriesTree.resx">
-      <DependentUpon>201812102006162_CategoriesTree.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812102015428_user.resx">
-      <DependentUpon>201812102015428_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812101839528_Orders-And-Cart.resx">
-      <DependentUpon>201812101839528_Orders-And-Cart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111021092_Orderu-Sprawdzacze.resx">
-      <DependentUpon>201812111021092_Orderu-Sprawdzacze.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111032507_Orderu-Sprawdzacze2.resx">
-      <DependentUpon>201812111032507_Orderu-Sprawdzacze2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812111357370_Initial.resx">
+      <DependentUpon>201812111357370_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

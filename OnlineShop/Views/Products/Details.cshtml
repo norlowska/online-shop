@@ -26,13 +26,14 @@
         <div class="col-sm-12 col-lg-5 text-center">
             @{
 
-                if (!Model.image.ContainsKey("smaller"))
+                if (!Model.image.ContainsKey("normal"))
                 {
                     <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
                 }
                 else
                 {
-                    <img class="img-responsive" src=@(Model.image["smaller"]) width="500" height="500" />
+                    <img class="img-responsive" src=@(Model.image["normal"]) width="500" height="500" />
+                    <img class="img-responsive" src=@(Model.image["smaller"])  />
                 }
 
             }
