@@ -33,12 +33,12 @@ namespace OnlineShop.Models
         public string City { get; set; }
         [Required(ErrorMessage = "Województwo jest wymagane")]
         [DisplayName("Województwo")]
+        [StringLength(160)]
+        public string State { get; set; }
+        [Required(ErrorMessage = "Kod pocztowy jest wymagany")]
+        [DisplayName("Kod pocztowy")]
         [RegularExpression(@"[0-9]{2}-[0-9]{3}",
             ErrorMessage = "Kod pocztowy jest nieprawidłowy.")]
-        public string State { get; set; }
-        [Required(ErrorMessage = "Kod pocztowy jest wymagane")]
-        [DisplayName("Kod pocztowy")]
-        [StringLength(160)]
         public string PostalCode { get; set; }
         [Required(ErrorMessage = "Kraj jest wymagany")]
         [DisplayName("Kraj")]

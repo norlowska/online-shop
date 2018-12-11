@@ -40,16 +40,17 @@
                             {
                                 @Html.AntiForgeryToken()
 
-                                
-                                 <a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
-                               
+
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+
                             }
                         }
                         else
                         {
-                        <a href="/Account/Login" class="user-nav"><img src="/Content/Images/user-solid.svg" alt="" />LOG IN</a>
+                            <a href="/Account/Login" class="user-nav"><img src="/Content/Images/user-solid.svg" alt="" />LOG IN</a>
                         }
-                        <a href="/ShoppingCart" class="cart-nav"><img src="/Content/Images/shopping-cart-solid.svg" alt="" /> Cart <span>(0)</span></a>
+                        <!--<a href="/ShoppingCart" class="cart-nav"><img src="/Content/Images/shopping-cart-solid.svg" alt="" /> Cart <span>(0)</span></a>-->
+                        @{Html.RenderAction("CartSummary", "ShoppingCart");}
                         <a href="/Products/sreach" class="search-nav"><img src="/Content/Images/search-solid.svg" alt="" /> Search</a>
                         <a href="https://github.com/urnooblem/online-shop" class="github-nav"><img src="/Content/Images/github-brands.svg" alt="" /></a>
                     </div>

@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201812111021092_Orderu-Sprawdzacze.Designer.cs">
       <DependentUpon>201812111021092_Orderu-Sprawdzacze.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812111032507_Orderu-Sprawdzacze2.cs" />
+    <Compile Include="Migrations\201812111032507_Orderu-Sprawdzacze2.Designer.cs">
+      <DependentUpon>201812111032507_Orderu-Sprawdzacze2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -359,6 +363,8 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -393,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812111021092_Orderu-Sprawdzacze.resx">
       <DependentUpon>201812111021092_Orderu-Sprawdzacze.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111032507_Orderu-Sprawdzacze2.resx">
+      <DependentUpon>201812111032507_Orderu-Sprawdzacze2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
