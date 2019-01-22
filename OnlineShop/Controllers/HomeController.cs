@@ -12,7 +12,6 @@ namespace OnlineShop.Controllers
         public ActionResult Index()
         {
             var model = _db.products.ToList();
-
             return View(model);
         }
 
