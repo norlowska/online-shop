@@ -212,9 +212,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812111357370_Initial.cs" />
-    <Compile Include="Migrations\201812111357370_Initial.Designer.cs">
-      <DependentUpon>201812111357370_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201901051838043_init.cs" />
+    <Compile Include="Migrations\201901051838043_init.Designer.cs">
+      <DependentUpon>201901051838043_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -385,6 +385,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="fonts\" />
     <Folder Include="Views\Db\" />
@@ -394,8 +395,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812111357370_Initial.resx">
-      <DependentUpon>201812111357370_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901051838043_init.resx">
+      <DependentUpon>201901051838043_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

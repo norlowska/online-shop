@@ -8,6 +8,29 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Models
 {
+    public enum OrderState
+    {
+        New,
+        Paid,
+        Complete,
+        Cancelled,
+    }
+
+    public enum OrderPaymentType
+    {
+        PayU,
+        PostalTransfer,
+        CreditCard,
+    }
+
+    public enum OrderShippingMethod
+    {
+        SelfPick,
+        Courier,
+        ParcelPost,
+        Locker,
+    }
+
     [Bind(Exclude = "OrderId")]
     public partial class Order
     {
@@ -59,6 +82,13 @@ namespace OnlineShop.Models
         [ScaffoldColumn(false)]
         public System.DateTime OrderDate { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+
+        [ScaffoldColumn(false)]
+        public OrderState orderState { get; set; }
+        [ScaffoldColumn(false)]
+        public OrderShippingMethod orderShippingMethod { get; set; }
+        [ScaffoldColumn(false)]
+        public OrderPaymentType orderPaymentType { get; set; }
     }
 
 
