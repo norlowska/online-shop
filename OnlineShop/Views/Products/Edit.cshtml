@@ -3,71 +3,73 @@
 @{
     ViewBag.Title = "Edit";
 }
+@section styles {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
+}
 
-<h2>Edit</h2>
-<div class="form-horizontal">
-    <h4>Produkty</h4>
 
-    <div class="row details-row">
-        @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+<div class="admin_panel">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2>Edit product</h2>
+                @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.jsonDictionary)
-            @Html.HiddenFor(model => model.jsonList)
-            <div class="col-sm-12 col-lg-5 text-center product-img">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.jsonDictionary)
+                    @Html.HiddenFor(model => model.jsonList)
+                    <div class="col-sm-12 col-lg-5 text-center product-img">
+                        @{
+                            if (!Model.image.ContainsKey("normal"))
+                            {
+                                <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
+                            }
+                            else
+                            {
+                                //var temp = Model.filePath.Split('\\');
+                                //<img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
+                                <img class="img-responsive" src=@(Model.image["normal"]) width="500" height="500" />
+                            }
 
-                @{
+                        }
 
-                    if (!Model.image.ContainsKey("normal"))
-                    {
-                        <img class="img-responsive" src="https://via.placeholder.com/500x500.png?text=Product+details+img" width="500" height="500" />
-                    }
-                    else
-                    {
-                        //var temp = Model.filePath.Split('\\');
-                        //<img class="img-responsive" src=@("/Content/Images/" + temp[temp.Count() - 1]) width="500" height="500" />
-                        <img class="img-responsive" src=@(Model.image["normal"]) width="500" height="500" />
-                    }
+                        <input type="file" name="filePath" id="filePath" runat="server" />
+                        <input type="file" name="filePath2" id="filePath2" runat="server" />
+                        <input type="text" name="fileDescription" />
+                        @Html.ValidationMessageFor(model => model.image)
+                    </div>
+                    <div class="col-sm-12 col-lg-7 justify-content-center">
+                        <div class="details-content">
+                            <div class="product-name">
+                                <div class="form-group">
+                                    <div class="product-name-input">
+                                        @Html.LabelFor(model => model.name)
 
-                }
-
-                <input type="file" name="filePath" id="filePath" runat="server" />
-                <input type="file" name="filePath2" id="filePath2" runat="server" />
-                <input type="text" name="fileDescription" />
-                @Html.ValidationMessageFor(model => model.image)
-            </div>
-            <div class="col-sm-12 col-lg-7 justify-content-center">
-                <div class="details-content">
-                    <div class="product-name">
-                        <div class="form-group">
-                            <div class="product-name-input">
-                                @Html.LabelFor(model => model.name)
-
-                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                @Html.LabelFor(model => model.price)
+                                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="product-description">
+                                @Html.LabelFor(model => model.description)
+                                <p class="hint">Use HTML tags to format text</p>
+                                @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                            </div>
+                            <div class="submit-changes">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-floppy-disk" style="margin-right: 12px;"></span>Save
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="product-price">
-                        @Html.LabelFor(model => model.price)
-                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="product-description">
-                        @Html.LabelFor(model => model.description)
-                        <p class="hint">Use HTML tags to format text</p>
-                        @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
-                    </div>
-                    <div class="submit-changes">
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-floppy-disk" style="margin-right: 12px;"></span>Save
-                        </button>
-                    </div>
-                </div>
+                            }
             </div>
-        }
-    </div>
-</div>
+        </div>

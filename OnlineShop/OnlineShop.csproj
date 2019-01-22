@@ -239,6 +239,7 @@
     <Content Include="App_Data\aspnet-OnlineShop-20181023030908_log.ldf">
       <DependentUpon>aspnet-OnlineShop-20181023030908.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\account_styles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -255,6 +256,7 @@
     <Content Include="Content\Images\user-solid.svg" />
     <Content Include="Content\shared_styles.css" />
     <Content Include="Content\shop_styles.css" />
+    <Content Include="Content\admin_styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\home_styles.css" />

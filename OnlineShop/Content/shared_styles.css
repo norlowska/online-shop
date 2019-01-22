@@ -62,7 +62,7 @@ p a
 }
 a, a:hover, a:visited, a:active, a:link
 {
-	text-decoration: none;
+	text-decoration: none !important;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -186,6 +186,7 @@ section
 {
 	width: 100%;
 	overflow: hidden;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.1)
 }
 .prlx_parent
 {
@@ -291,11 +292,11 @@ section
 {
 	display: inline-block;
 	margin-right: 14px;
-	-webkit-transform: translateY(-2px);
-	-moz-transform: translateY(-2px);
-	-ms-transform: translateY(-2px);
-	-o-transform: translateY(-2px);
-	transform: translateY(-2px);
+	-webkit-transform: translateY(8px);
+	-moz-transform: translateY(8px);
+	-ms-transform: translateY(8px);
+	-o-transform: translateY(8px);
+	transform: translateY(8px);
 }
 .top_bar_menu
 {
@@ -401,18 +402,19 @@ section
 {
 	display: inline-block;
 	margin-right: 7px;
-	-webkit-transform: translateY(-2px);
-	-moz-transform: translateY(-2px);
-	-ms-transform: translateY(-2px);
-	-o-transform: translateY(-2px);
-	transform: translateY(-2px);
+	-webkit-transform: translateY(8px);
+	-moz-transform: translateY(8px);
+	-ms-transform: translateY(8px);
+	-o-transform: translateY(8px);
+	transform: translateY(8px);
 	width: 15px;
 }
 .user_icon img
 {
 	width: 100%;
 }
-.top_bar_user div
+.top_bar_user div,
+.top_bar_user form
 {
 	display: inline-block;
 }
@@ -822,6 +824,14 @@ select option
 	width: 100%;
 	height: 60px;
 }
+
+.main_nav_content a:hover {
+    text-decoration:none;
+}
+
+.main_nav_menu a:hover {
+    color:#0e8ce4;
+}
 .cat_menu_container
 {
 	width: 150px;
@@ -831,10 +841,22 @@ select option
 	cursor: pointer;
 	z-index: 1;
 }
+
+.cat_menu_container:hover {
+    background:#0c5ac2;
+}
+
 .cat_menu_title
 {
 	height: 100%;
 }
+
+.cat_menu_title a,
+.cat_menu_title a:hover
+{
+	color: #fff;
+}
+
 .cat_burger
 {
 	width: 24px;

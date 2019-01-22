@@ -1,84 +1,82 @@
 ﻿@model OnlineShop.Models.Product
 
-
-@{
-    ViewBag.Title = "Create";
+@section styles {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
 }
 
-<div class="col-md-12">
+@{
+    ViewBag.Title = "Create new product";
+}
 
-    <div class="col-md-11">
-        <h2>Add new product</h2>
-    </div>
-    <div class="col-md-1">
-        @Html.ActionLink("Back to List", "Index_admin")
-    </div>
+<div class="admin_panel">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2>Add new product</h2>
+                @Html.ActionLink("Back to List", "Index_admin")
+                @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <hr />
+                    @Html.ValidationSummary(true)
+                    <div class="form-group row ml-auto">
+                        @Html.LabelFor(model => model.name, "Name", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
+                        <div class="form-group row ml-auto">
+                            @Html.LabelFor(model => model.description, "Description", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true)
-            <div class="form-group">
-                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group row ml-auto">
+                            @Html.LabelFor(model => model.price, "Price", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-6">
-                    @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group row ml-auto">
+                            @Html.Label("image", "Image", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                <input type="file" name="filePath" id="filePath" runat="server" />
+                            </div>
+                        </div>
+                        <h4>Extra files</h4>
+                        <div class="form-group row ml-auto">
+                            @Html.Label("filename", "File name", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-4">
+                                <input type="text" name="fileDescription" class="form-control" />
+                            </div>
+                            <div class="col-md-2">
+                                <input type="file" name="filePath2" id="filePath2" runat="server" />
+                            </div>
+                        </div>
 
+                        <div class="form-group row ml-auto">
+                            @Html.Label("category name", "Category", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.cat_pro.Id, new SelectList(ViewBag.CategoriesList, "Id", "name"), "None")
+                                @Html.ValidationMessageFor(model => model.cat_pro.Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("image", htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-6">
-                    <input type="file" name="filePath" id="filePath" runat="server" />
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("filename", htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-4">
-                    <input type="text" name="fileDescription" class="form-control" />
-                </div>
-                <div class="col-md-2">
-                    <input type="file" name="filePath2" id="filePath2" runat="server" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("category name", htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-6">
-                    @Html.DropDownListFor(model => model.cat_pro.Id, new SelectList(ViewBag.CategoriesList, "Id", "name"), "None")
-                    @Html.ValidationMessageFor(model => model.cat_pro.Id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="col-md-9">
-                <div class="submit-changes" style="float: right;">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-floppy-disk" style="margin-right: 12px;"></span>Add
-                    </button>
-                </div>
+                            <div class="form-group row ml-auto">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Add" class="btn btn-default submit-button" />
+                                </div>
+                            </div>
+                }
             </div>
         </div>
-    }
+    </div>
 </div>
 <div style="clear:both;"></div>
 @section Scripts {

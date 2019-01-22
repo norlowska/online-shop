@@ -1,0 +1,37 @@
+﻿.login,
+.register {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+}
+
+.label-text {
+    font-size: 16px;
+}
+
+.submit-button {
+    background:#0e8ce4;
+    color: #fff;
+    width: 100px;
+    font-size: 18px;
+}
+
+.submit-button:hover {
+    background: #0c5ac2;
+}
+
+p a {
+    border-bottom: none;
+}
+
+p a:hover {
+    color:#0c5ac2;
+    background: inherit;
+}
+
+.register-link {
+        font-size: 18px;
+    font-weight: 500;
+    color: #0e8ce4;
+    margin-top: 13px;
+}

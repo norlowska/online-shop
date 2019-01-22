@@ -4,14 +4,24 @@
     ViewBag.Title = "Administration Panel";
 }
 
+@section styles {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
+}
+
 @if (User.IsInRole("Admin"))
 {
-    <div class="col-md-12">
-        <h2>Administration Panel</h2>
-        <ul style="list-style-type:square;">
-            <li>@Html.ActionLink("Manage products", "Index_admin", "Products")</li>
-            <li>@Html.ActionLink("Manage categories", "Admin_Index", "Categories")</li>
-            <li>@Html.ActionLink("Manage users", "Index", "ExtendUser")</li>
-        </ul>
+    <div class="admin_panel">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <h2>Administration Panel</h2>
+                    <ul style="list-style-type:square;">
+                        <li>@Html.ActionLink("Manage products", "Index_admin", "Products")</li>
+                        <li>@Html.ActionLink("Manage categories", "Admin_Index", "Categories")</li>
+                        <li>@Html.ActionLink("Manage users", "Index", "ExtendUser")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 }

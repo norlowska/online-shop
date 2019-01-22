@@ -2,31 +2,41 @@
 @{
     ViewBag.Title = "Users list";
 }
-<div class="col-md-12">
-    <h2>Users list</h2>
-    <table class="table">
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th></th>
-        </tr>
+@section styles {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
+}
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-    </table>
+<div class="admin_panel">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h2>Users list</h2>
+                <table class="table">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
 
-    <h4>@Html.ActionLink("Create new", "Create")</h4>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <h4>@Html.ActionLink("Create new", "Create")</h4>
+            </div>
+        </div>
+    </div>
 </div>

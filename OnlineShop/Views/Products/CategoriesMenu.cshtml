@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<OnlineShop.Models.Category>
-@*var rootElements = Model.Where(c => c.parent == null).OrderBy(c => c.Id);*@
 
 @helper DisplayCategoriesTree(IEnumerable<OnlineShop.Models.Category> categories)
 {
-    <ul class="categories-list list-unstyled">
+    <ul class="sidebar_categories">
         @foreach (var category in categories)
         {
             <li>
@@ -13,10 +12,9 @@
 
                     if (children.Count() > 0)
                     {
-                        <i class="fas fa-chevron-right"></i>
-                        <ul>
+                        <div class="subcategories">
                             @DisplayCategoriesTree(children)
-                        </ul>
+                        </div>
                     }
                 }
             </li>

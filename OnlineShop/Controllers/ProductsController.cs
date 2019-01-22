@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
 using System.Web.Helpers;
+using System.Diagnostics;
 
 namespace OnlineShop.Controllers
 {
@@ -28,8 +29,8 @@ namespace OnlineShop.Controllers
         public ActionResult Index_admin()
         {
             var m = User.Identity.Name;
-            var moder = db.products.ToList();
-            return View(moder);
+            var model = db.products.ToList();
+            return View(model);
         }
 
         // GET: Products
