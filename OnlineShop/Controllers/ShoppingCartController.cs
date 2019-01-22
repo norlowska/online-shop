@@ -25,7 +25,7 @@ namespace OnlineShop.Controllers
             return View(viewModel);
         }
         // GET: /store/AddToCart/5
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, int qty)
         {
             var addedProduct = storeDB.products.Single(c => c.Id == id);
             var cart = ShoppingCart.GetCart(this.HttpContext);
