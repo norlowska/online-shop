@@ -20,10 +20,14 @@ namespace OnlineShop.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<discount_for_user> discount_user { get; set; }
 
+        
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+       
     }
 }

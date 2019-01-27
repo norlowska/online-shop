@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
 using System.Web.Helpers;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShop.Controllers
 {
@@ -18,11 +20,91 @@ namespace OnlineShop.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         
-        public ActionResult Index()
+        public ActionResult Index(int? str)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var id = User.Identity.GetUserId();
+                UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+                ApplicationUserManager userManager = new ApplicationUserManager(store);
+                ApplicationUser cUser = userManager.FindById(id);
+                ViewBag.Ograniczeni = cUser.Ograniczeni;
+                ViewBag.pom = cUser.Ograniczeni;
+              
+                int i = db.products.Count();
+                if(i>cUser.Ograniczeni)
+                {
+                    int reszta = i % cUser.Ograniczeni;
+                    if(reszta==0)
+                    {
+                        ViewBag.ilosc_stron = i / cUser.Ograniczeni;
+                        
+                    }
+                    else
+                    {
+                        ViewBag.ilosc_stron = (i / cUser.Ograniczeni) + 1;
+                        
+                    }
+
+
+                    if(str==null || str==1)
+                    {
+                        ViewBag.i = 0;
+                        ViewBag.Ograniczeni = cUser.Ograniczeni;
+                    }
+                    else
+                    {
+                        for(int j=2; j<= ViewBag.ilosc_stron; j++)
+                        {
+
+                            if(str==j)
+                            {
+                                ViewBag.i = cUser.Ograniczeni * (j-1);
+                                ViewBag.Ograniczeni = cUser.Ograniczeni*j;
+                            }
+
+                            if(str== ViewBag.ilosc_stron)
+                            {
+                                ViewBag.i = cUser.Ograniczeni * (j - 1);
+                                ViewBag.Ograniczeni = db.products.Count(); 
+                            }
+
+                        }
+
+                    }
+
+
+
+
+                }
+                else
+                {
+                    ViewBag.Ograniczeni = 0;
+                    ViewBag.ilosc_stron = 0;
+                }
+                
+            }
+            else
+            {
+                ViewBag.Ograniczeni = 0;
+                ViewBag.ilosc_stron = 0;
+            }
+            
+            
+            
+
+            ViewBag.str = str;
             var model = db.products.ToList();
             return View(model);
         }
+
+        public ActionResult test(int? str)
+        {
+            ViewBag.str = str;
+            
+            return View();
+        }
+
 
         [Authorize(Roles = "Admin")]
         public ActionResult Index_admin()
@@ -99,6 +181,12 @@ namespace OnlineShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            var id_user = User.Identity.GetUserId();
+
+            UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+            ApplicationUserManager userManager = new ApplicationUserManager(store);
+            ApplicationUser cUser = userManager.FindById(id_user);
             Product product = db.products.Where(p => id == p.Id).FirstOrDefault();
             if (product == null)
             {
@@ -221,7 +309,8 @@ namespace OnlineShop.Controllers
 
                     db.products.Add(product);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_admin");
+
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -334,7 +423,7 @@ namespace OnlineShop.Controllers
 
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_admin");
             }
 
             var prduktToUpdate = db.products.Find(product.Id);
@@ -345,7 +434,7 @@ namespace OnlineShop.Controllers
                 {
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index_admin");
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {

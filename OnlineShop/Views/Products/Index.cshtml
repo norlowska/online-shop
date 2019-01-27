@@ -8,6 +8,10 @@
     @{ Html.RenderAction("CategoriesMenu", "Products");}
 </div>
 <div class="col-md-10 products-area">
+   
+
+
+
     <table class="table">
         <tr>
             <th>
@@ -24,26 +28,79 @@
             </th>
             <th></th>
         </tr>
-        @foreach (var item in Model)
+
+        @if (ViewBag.Ograniczeni == 0)
+        {
+            foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
-                </td>
-                <td>
-                    @Html.Raw(item.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cat_pro.name)
-                </td>
-                <td>
-                    @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
-                    @Html.ActionLink("add to cart", "AddToCart/" + item.Id, "ShoppingCart")
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.Raw(item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cat_pro.name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
+                        @Html.ActionLink("add to cart", "AddToCart/" + item.Id, "ShoppingCart")
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+           
+            for (int a =ViewBag.i; a < ViewBag.Ograniczeni; a++)
+            {
+
+                    <tr>
+                        <td>
+                            @Html.ActionLink(Model.ElementAt(a).name, "Details", "Products", new { id = Model.ElementAt(a).Id }, null)
+                        </td>
+                        <td>
+                            @Html.Raw(Model.ElementAt(a).description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.ElementAt(a).price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.ElementAt(a).cat_pro.name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("buy now", "buy/" + Model.ElementAt(a).Id, "Home") <br />
+                            @Html.ActionLink("add to cart", "AddToCart/" + Model.ElementAt(a).Id, "ShoppingCart")
+                        </td>
+                    </tr>
+                }
         }
     </table>
+
+    <div class="text-center">
+   
+        <ul class="pagination">
+            
+
+            @for (int a = 1; a <= ViewBag.ilosc_stron; a++)
+            {
+
+                <li>
+                 @Html.ActionLink(a.ToString(), "Index", "Products", new { str = a }, null)
+               
+                </li>
+
+            }
+                <li>
+                   
+                   
+                        
+                </li>
+        </ul>
+    </div>
+
 </div>

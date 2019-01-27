@@ -28,6 +28,12 @@
                     {
                         <li>@Html.ActionLink("Administration Panel", "Index", "Product")</li>
                     }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Profil", "profil", "ExtendUser")</li>
+                    }
+
+
                 </ul>
             </nav>
             <div class="nav-icons">
