@@ -22,6 +22,7 @@ namespace OnlineShop.Controllers
         
         public ActionResult Index(int? str)
         {
+            int i = db.products.Count();
             if (User.Identity.IsAuthenticated)
             {
                 var id = User.Identity.GetUserId();
@@ -31,7 +32,7 @@ namespace OnlineShop.Controllers
                 ViewBag.Ograniczeni = cUser.Ograniczeni;
                 ViewBag.pom = cUser.Ograniczeni;
               
-                int i = db.products.Count();
+                
                 if(i>cUser.Ograniczeni)
                 {
                     int reszta = i % cUser.Ograniczeni;
@@ -79,15 +80,93 @@ namespace OnlineShop.Controllers
                 }
                 else
                 {
-                    ViewBag.Ograniczeni = 0;
-                    ViewBag.ilosc_stron = 0;
+                    int limit = 5;
+                    int reszta = i % limit;
+                    if(reszta==0)
+                    {
+                        ViewBag.ilosc_stron = i / limit;
+                        
+                    }
+                    else
+                    {
+                        ViewBag.ilosc_stron = (i / limit) + 1;
+                        
+                    }
+
+
+                    if(str==null || str==1)
+                    {
+                        ViewBag.i = 0;
+                        ViewBag.Ograniczeni = limit;
+                    }
+                    else
+                    {
+                        for(int j=2; j<= ViewBag.ilosc_stron; j++)
+                        {
+
+                            if(str==j)
+                            {
+                                ViewBag.i = limit * (j-1);
+                                ViewBag.Ograniczeni = limit * j;
+                            }
+
+                            if(str== ViewBag.ilosc_stron)
+                            {
+                                ViewBag.i = limit * (j - 1);
+                                ViewBag.Ograniczeni = db.products.Count(); 
+                            }
+
+                        }
+
+                    }
+
+
+
+                   
                 }
                 
             }
             else
             {
-                ViewBag.Ograniczeni = 0;
-                ViewBag.ilosc_stron = 0;
+                int limit = 5;
+                int reszta = i % limit;
+                if (reszta == 0)
+                {
+                    ViewBag.ilosc_stron = i / limit;
+
+                }
+                else
+                {
+                    ViewBag.ilosc_stron = (i / limit) + 1;
+
+                }
+
+
+                if (str == null || str == 1)
+                {
+                    ViewBag.i = 0;
+                    ViewBag.Ograniczeni = limit;
+                }
+                else
+                {
+                    for (int j = 2; j <= ViewBag.ilosc_stron; j++)
+                    {
+
+                        if (str == j)
+                        {
+                            ViewBag.i = limit * (j - 1);
+                            ViewBag.Ograniczeni = limit * j;
+                        }
+
+                        if (str == ViewBag.ilosc_stron)
+                        {
+                            ViewBag.i = limit * (j - 1);
+                            ViewBag.Ograniczeni = db.products.Count();
+                        }
+
+                    }
+
+                }
             }
             
             
