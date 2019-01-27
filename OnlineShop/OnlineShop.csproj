@@ -218,45 +218,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901212003223_Initial.cs" />
-    <Compile Include="Migrations\201901212003223_Initial.Designer.cs">
-      <DependentUpon>201901212003223_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901261238430_Counter.cs" />
-    <Compile Include="Migrations\201901261238430_Counter.Designer.cs">
-      <DependentUpon>201901261238430_Counter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901211828559_Discount.cs" />
-    <Compile Include="Migrations\201901211828559_Discount.Designer.cs">
-      <DependentUpon>201901211828559_Discount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901211841206_discouna.cs" />
-    <Compile Include="Migrations\201901211841206_discouna.Designer.cs">
-      <DependentUpon>201901211841206_discouna.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901212134015_oo.cs" />
-    <Compile Include="Migrations\201901212134015_oo.Designer.cs">
-      <DependentUpon>201901212134015_oo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901220012228_kkk.cs" />
-    <Compile Include="Migrations\201901220012228_kkk.Designer.cs">
-      <DependentUpon>201901220012228_kkk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901220045541_Profiles.cs" />
-    <Compile Include="Migrations\201901220045541_Profiles.Designer.cs">
-      <DependentUpon>201901220045541_Profiles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901241917445_newsletter.cs" />
-    <Compile Include="Migrations\201901241917445_newsletter.Designer.cs">
-      <DependentUpon>201901241917445_newsletter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901241921520_Name.cs" />
-    <Compile Include="Migrations\201901241921520_Name.Designer.cs">
-      <DependentUpon>201901241921520_Name.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901242025561_Ograniczenia.cs" />
-    <Compile Include="Migrations\201901242025561_Ograniczenia.Designer.cs">
-      <DependentUpon>201901242025561_Ograniczenia.cs</DependentUpon>
+    <Compile Include="Migrations\201901271631346_Initial.cs" />
+    <Compile Include="Migrations\201901271631346_Initial.Designer.cs">
+      <DependentUpon>201901271631346_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -440,7 +404,6 @@
     <Content Include="Views\Products\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="fonts\" />
     <Folder Include="Views\Counter\" />
@@ -457,35 +420,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901212003223_Initial.resx">
-      <DependentUpon>201901212003223_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901261238430_Counter.resx">
-      <DependentUpon>201901261238430_Counter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901211828559_Discount.resx">
-      <DependentUpon>201901211828559_Discount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901211841206_discouna.resx">
-      <DependentUpon>201901211841206_discouna.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901212134015_oo.resx">
-      <DependentUpon>201901212134015_oo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901220012228_kkk.resx">
-      <DependentUpon>201901220012228_kkk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901220045541_Profiles.resx">
-      <DependentUpon>201901220045541_Profiles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901241917445_newsletter.resx">
-      <DependentUpon>201901241917445_newsletter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901241921520_Name.resx">
-      <DependentUpon>201901241921520_Name.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901242025561_Ograniczenia.resx">
-      <DependentUpon>201901242025561_Ograniczenia.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901271631346_Initial.resx">
+      <DependentUpon>201901271631346_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

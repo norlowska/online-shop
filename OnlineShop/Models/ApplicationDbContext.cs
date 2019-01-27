@@ -16,7 +16,8 @@ namespace OnlineShop.Models
         public DbSet<Product> products { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Comment> comments { get; set; }
-
+        public DbSet<Counter> counters { get; set; }
+        public DbSet<discount_for_user> discount_user { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Cart> Carts { get; set; }
@@ -29,5 +30,4 @@ namespace OnlineShop.Models
        
     }
 }
-        public DbSet<Counter> counters { get; set; }
-        public DbSet<discount_for_user> discount_user { get; set; }
+        

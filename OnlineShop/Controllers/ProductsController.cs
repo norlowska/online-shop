@@ -10,6 +10,9 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShop.Models;
 using System.Web.Helpers;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.Diagnostics;
 
 namespace OnlineShop.Controllers
 {
@@ -598,7 +601,4 @@ namespace OnlineShop.Controllers
         }
     }
 }
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
 
-using System.Diagnostics;
