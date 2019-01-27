@@ -233,11 +233,16 @@
     <Compile Include="Migrations\201901271920130_UserFix.Designer.cs">
       <DependentUpon>201901271920130_UserFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901272205127_ContactModel.cs" />
+    <Compile Include="Migrations\201901272205127_ContactModel.Designer.cs">
+      <DependentUpon>201901272205127_ContactModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ApplicationUserModels.cs" />
@@ -415,6 +420,7 @@
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Products\test.cshtml" />
+    <Content Include="Views\Home\ContactSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
@@ -440,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901271920130_UserFix.resx">
       <DependentUpon>201901271920130_UserFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901272205127_ContactModel.resx">
+      <DependentUpon>201901272205127_ContactModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
