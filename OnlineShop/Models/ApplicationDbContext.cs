@@ -21,11 +21,13 @@ namespace OnlineShop.Models
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Cart> Carts { get; set; }
 
-        public DbSet<Counter> counters { get; set; }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+       
     }
 }
+        public DbSet<Counter> counters { get; set; }
+        public DbSet<discount_for_user> discount_user { get; set; }

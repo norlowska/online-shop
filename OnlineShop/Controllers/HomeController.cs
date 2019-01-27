@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OnlineShop.Models;
 using System.Linq;
-using System.Web;
+
 using System.Web.Mvc;
 
 namespace OnlineShop.Controllers
 {
-    public class HomeController : DbController
+    public class HomeController : Controller
     {
-
+        private ApplicationDbContext _db = new ApplicationDbContext();
         public ActionResult Index()
         {
             var model = _db.products.ToList();

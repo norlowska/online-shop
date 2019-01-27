@@ -81,6 +81,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Postal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=45719375b8b4d528, processorArchitecture=MSIL">
+      <HintPath>..\packages\Postal.Mvc5.1.2.0\lib\net45\Postal.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.4.1.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -220,11 +226,44 @@
     <Compile Include="Migrations\201901261238430_Counter.Designer.cs">
       <DependentUpon>201901261238430_Counter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901211828559_Discount.cs" />
+    <Compile Include="Migrations\201901211828559_Discount.Designer.cs">
+      <DependentUpon>201901211828559_Discount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901211841206_discouna.cs" />
+    <Compile Include="Migrations\201901211841206_discouna.Designer.cs">
+      <DependentUpon>201901211841206_discouna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901212134015_oo.cs" />
+    <Compile Include="Migrations\201901212134015_oo.Designer.cs">
+      <DependentUpon>201901212134015_oo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901220012228_kkk.cs" />
+    <Compile Include="Migrations\201901220012228_kkk.Designer.cs">
+      <DependentUpon>201901220012228_kkk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901220045541_Profiles.cs" />
+    <Compile Include="Migrations\201901220045541_Profiles.Designer.cs">
+      <DependentUpon>201901220045541_Profiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901241917445_newsletter.cs" />
+    <Compile Include="Migrations\201901241917445_newsletter.Designer.cs">
+      <DependentUpon>201901241917445_newsletter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901241921520_Name.cs" />
+    <Compile Include="Migrations\201901241921520_Name.Designer.cs">
+      <DependentUpon>201901241921520_Name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901242025561_Ograniczenia.cs" />
+    <Compile Include="Migrations\201901242025561_Ograniczenia.Designer.cs">
+      <DependentUpon>201901242025561_Ograniczenia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ApplicationUserModels.cs" />
     <Compile Include="Models\Counter.cs" />
@@ -234,6 +273,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\discount_for_user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
@@ -317,7 +357,9 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -388,6 +430,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\ExtendUser\List_discount.cshtml" />
+    <Content Include="Views\ExtendUser\Edit_discount.cshtml" />
+    <Content Include="Views\ExtendUser\Creat_discoint.cshtml" />
+    <Content Include="Views\ExtendUser\profil.cshtml" />
+    <Content Include="Views\ExtendUser\Edit_profil.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
+    <Content Include="Views\Products\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,6 +462,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901261238430_Counter.resx">
       <DependentUpon>201901261238430_Counter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901211828559_Discount.resx">
+      <DependentUpon>201901211828559_Discount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901211841206_discouna.resx">
+      <DependentUpon>201901211841206_discouna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901212134015_oo.resx">
+      <DependentUpon>201901212134015_oo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901220012228_kkk.resx">
+      <DependentUpon>201901220012228_kkk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901220045541_Profiles.resx">
+      <DependentUpon>201901220045541_Profiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901241917445_newsletter.resx">
+      <DependentUpon>201901241917445_newsletter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901241921520_Name.resx">
+      <DependentUpon>201901241921520_Name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901242025561_Ograniczenia.resx">
+      <DependentUpon>201901242025561_Ograniczenia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
