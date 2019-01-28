@@ -17,9 +17,7 @@
         <th>
             @Html.DisplayNameFor(model => model.percent)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.expiration_date)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.User.Email)
         </th>
@@ -33,9 +31,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.percent)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.expiration_date)
-        </td>
+      
         @foreach (var a in ViewBag.user)
         {
             if (a.Id == item.User.Id)

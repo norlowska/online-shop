@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201901271952107_Pierwsza.Designer.cs">
       <DependentUpon>201901271952107_Pierwsza.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901281642578_Zniszka.cs" />
+    <Compile Include="Migrations\201901281642578_Zniszka.Designer.cs">
+      <DependentUpon>201901281642578_Zniszka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -422,6 +426,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901271952107_Pierwsza.resx">
       <DependentUpon>201901271952107_Pierwsza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901281642578_Zniszka.resx">
+      <DependentUpon>201901281642578_Zniszka.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
