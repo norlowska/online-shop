@@ -26,7 +26,7 @@
         </div>
         <div class="row justify-content-center row-margin-top">
             <div class="col-sm-8">
-                @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
@@ -75,7 +75,7 @@
                         @Html.Label("category name", "Category", htmlAttributes: new { @class = "control-label col-md-3" })
                         <div class="col-md-8">
                             @Html.DropDownListFor(model => model.cat_pro.Id, new SelectList(ViewBag.CategoriesList, "Id", "name"), "None")
-                            @Html.ValidationMessageFor(model => model.cat_pro.Id, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.cat_pro.Id, "Category is required", new { @class = "text-danger" })
                         </div>
                     </div>
 

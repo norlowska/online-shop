@@ -50,6 +50,8 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/Categories/Edit/5
         public ActionResult Edit(int? id)
         {
+            var items = db.categories.ToList();
+            ViewBag.CategoriesList = items.Where((cat) => cat.Id != id).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -67,11 +69,22 @@ namespace OnlineShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,name,parent")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                var parentCategory = db.categories.SingleOrDefault(c => c.Id == category.parent.Id);
+                var editedCategory = db.categories.Find(category.Id);
+                if (parentCategory != null)
+                {
+                    editedCategory.parent = parentCategory;
+                }
+                else
+                {
+                    editedCategory.parent = null;
+                }
+                editedCategory.name = category.name;
+                //db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

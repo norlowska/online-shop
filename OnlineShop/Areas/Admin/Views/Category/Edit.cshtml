@@ -37,6 +37,13 @@
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    <div class="form-group row ml-auto">
+                        @Html.Label("category name", "Parent category", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.parent.Id, new SelectList(ViewBag.CategoriesList, "Id", "name"), "None")
+                           @* @Html.ValidationMessageFor(model => model.parent.Id, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
 
                     <div class="form-group row ml-auto">
                         <div class="col-md-offset-2 col-md-10">

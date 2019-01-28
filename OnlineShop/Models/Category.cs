@@ -10,6 +10,7 @@ namespace OnlineShop.Models
         public String name { get; set; }
         virtual public ICollection<Product> Product { get; set; }
 
+        public int? parentId { get; set; }
         virtual public Category parent { get; set; }
     }
 }
