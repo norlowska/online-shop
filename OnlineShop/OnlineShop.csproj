@@ -230,6 +230,7 @@
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ApplicationUserModels.cs" />
@@ -407,6 +408,7 @@
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Products\test.cshtml" />
+    <Content Include="Views\Home\ContactSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

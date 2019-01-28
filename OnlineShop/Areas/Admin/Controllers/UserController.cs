@@ -137,14 +137,14 @@ namespace OnlineShop.Areas.Admin.Controllers
                     {
                         smtp.Send(mess);
                     }
-                    return RedirectToAction("Index", "ExtendUser");
+                    return RedirectToAction("Index", "User");
                 }
             }
             catch (Exception)
             {
                 ViewBag.Error = "Some Error";
             }
-            return RedirectToAction("Index", "ExtendUser");
+            return RedirectToAction("Index", "User");
         }
     }
 }
