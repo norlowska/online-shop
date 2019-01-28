@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OnlineShop.Models.discount_for_user>
+
+@{
+    ViewBag.Title = "List_discount";
+}
+
+<h2>List_discount</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Creat_discoint")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percent)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percent)
+        </td>
+      
+        @foreach (var a in ViewBag.user)
+        {
+            if (a.Id == item.User.Id)
+            {
+        <td>
+                @a.Email
+        </td>
+                }
+            }
+        <td>
+
+
+            @Html.ActionLink("Delete", "Delate_discount", new { id = item.Id })
+        </td>Delate_discount
+    </tr>
+        }       
+</table>

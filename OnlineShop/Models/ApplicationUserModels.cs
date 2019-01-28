@@ -10,13 +10,15 @@ namespace OnlineShop.Models
     {
 
         public string imie { get; set; }
+
         public string Nazwisko { get; set; }
         public string Adres { get; set; }
         public string miasto { get; set; }
+
         public string Województwo { get; set; }
+
         public string kod_pocztowy { get; set; }
-        public string ulica { get; set; }
-        public string nr { get; set; }
+
         public string Kraj { get; set; }
 
         public bool newsletter { get; set; }

@@ -14,8 +14,11 @@
     <div class="super_container">
 
         <!-- Header -->
+
         <header class="header">
+
             <!-- Top Bar -->
+
             <div class="top_bar">
                 <div class="container">
                     <div class="row">
@@ -45,7 +48,7 @@
                                 <div class="top_bar_user">
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <div>@Html.ActionLink("Administration Panel", "Index", "Home", new { area = "Admin" }, null)</div>
+                                        <div>@Html.ActionLink("Administration Panel", "Index", "Product")</div>
                                     }
                                     <div class="user_icon"><i class="material-icons md-24">person_outline</i></div>
                                     @if (Request.IsAuthenticated)
@@ -78,7 +81,7 @@
                         <!-- Logo -->
                         <div class="col-lg-3 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo">@Html.ActionLink("Techtronics", "Index", "Home", new { area = "" }, null)</div>
+                                <div class="logo">@Html.ActionLink("Techtronics", "Index", "Home")</div>
                             </div>
                         </div>
 
@@ -135,7 +138,7 @@
                                 <div class="cat_menu_container">
                                     <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                         <div class="cat_burger"><i class="material-icons md-light">shopping_basket</i></div>
-                                        <div class="cat_menu_text">@Html.ActionLink("STORE", "Index", "Products", new { area = "" }, null)</div>
+                                        <div class="cat_menu_text">@Html.ActionLink("STORE", "Index", "Products")</div>
                                     </div>
                                 </div>
 
@@ -143,14 +146,14 @@
 
                                 <div class="main_nav_menu ml-auto">
                                     <ul class="standard_dropdown main_nav_dropdown">
-                                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                                        <li>@Html.ActionLink("Home", "Index", "Home")</a></li>
                                         <li>
-                                            @Html.ActionLink("New products", "Index", "Products", new { area = "" }, null)
+                                            <a href="#">@Html.ActionLink("New products", "Index", "Products")</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("Sale", "Index", "Products", new { area = "" }, null)
+                                            @Html.ActionLink("Sale", "Index", "Products")</a>
                                         </li>
-                                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
+                                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                     </ul>
                                 </div>
 
@@ -202,9 +205,9 @@
                         <div class="footer_column">
                             <div class="footer_title">Customer Care</div>
                             <ul class="footer_list">
-                                <li>@Html.ActionLink("My Account", "Index", "Home", new { area = "" }, null)</li>
+                                <li>@Html.ActionLink("My Account", "Index", "Home")</li>
                                 <li><a href="#">My Orders</a></li>
-                                <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             </ul>
                         </div>
                     </div>
