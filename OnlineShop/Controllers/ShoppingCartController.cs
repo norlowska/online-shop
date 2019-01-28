@@ -34,23 +34,13 @@ namespace OnlineShop.Controllers
             return RedirectToAction("Index");
         }
 
-        //AJAX: /ShoppingCart/RemoveFromCart/5
-        [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
             var cart = ShoppingCart.GetCart(HttpContext);
             string productName = storeDB.Carts.Single(itm => itm.RecordId == id).Product.name;
             int count = cart.RemoveFromCart(id);
 
-            var results = new ShoppingCartRemoveViewModel
-            {
-                Message = Server.HtmlEncode(productName) + " został(a) usunięty(a) z koszyka.",
-                CartTotal = cart.GetTotal(),
-                CartCount = cart.GetCount(),
-                ItemCount = count,
-                DeleteId = id
-            };
-            return Json(results);
+            return RedirectToAction("Index");
         }
 
         //GET: /ShoppingCart/CartSummary

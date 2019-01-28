@@ -24,7 +24,7 @@ namespace OnlineShop.Models
             return GetCart(controller.HttpContext);
         }
 
-        public void AddToCart(Product product)
+        public void AddToCart(Product product, int qty = 1)
         {
             var cart = storeDB.Carts.SingleOrDefault(c => c.CartId == ShoppingCartId && c.ProductId == product.Id);
 
@@ -34,7 +34,7 @@ namespace OnlineShop.Models
                 {
                     ProductId = product.Id,
                     CartId = ShoppingCartId,
-                    Count = 1,
+                    Count = qty,
                     DateCreated = DateTime.Now
                 };
 
@@ -42,7 +42,7 @@ namespace OnlineShop.Models
             }
             else
             {
-                cart.Count++;
+                cart.Count += qty;
             }
             storeDB.SaveChanges();
         }

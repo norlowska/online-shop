@@ -236,6 +236,7 @@ namespace OnlineShop.Controllers
 
 
         // GET: Products/Details/5
+        [HttpGet]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -257,7 +258,11 @@ namespace OnlineShop.Controllers
             return View(product);
         }
 
-        
+        [HttpPost]
+        public ActionResult Details(Product p, int quantity)
+        {
+            return Redirect("/ShoppingCart/AddToCart/" + p.Id + "?qty=" + quantity);
+        }
 
         public ActionResult DownloadFile(String list, int id)
         {

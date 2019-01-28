@@ -102,7 +102,7 @@
                                     </div>
                                     <div>
                                         @Html.ActionLink("buy now", "buy/" + product.Id, "Home") <br />
-                                        @Html.ActionLink("add to cart", "AddToCart/" + product.Id, "ShoppingCart")
+                                        @Html.ActionLink("add to cart", "AddToCart/" + product.Id, "ShoppingCart",new { qty = 1 },null)
                                     </div>
                                 </div>
                             }
