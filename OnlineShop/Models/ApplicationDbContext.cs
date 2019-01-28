@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using OnlineShop.Areas.Admin.Models;
 
 namespace OnlineShop.Models
 {
@@ -21,6 +22,7 @@ namespace OnlineShop.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<GeneralSettings> adminSettings { get; set; }
 
         public static ApplicationDbContext Create()
         {

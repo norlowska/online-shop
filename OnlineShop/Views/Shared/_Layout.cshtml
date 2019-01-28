@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -20,18 +22,18 @@
                 <div class="container">
                     <div class="row">
                         <div class="col d-flex flex-row">
-                            <div class="top_bar_contact_item"><div class="top_bar_icon"><i class="material-icons md-24">mail_outline</i></div><a href="mailto:techtronics.contact@gmail.com">techtronics.contact@gmail.com</a></div>
+                            @{ Html.RenderAction("Visits", "Home", new { area = "" }); }
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         @*<li>
-                                                <a href="#">English<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Italian</a></li>
-                                                    <li><a href="#">Spanish</a></li>
-                                                    <li><a href="#">Japanese</a></li>
-                                                </ul>
-                                            </li>*@
+                        <a href="#">English<i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Italian</a></li>
+                            <li><a href="#">Spanish</a></li>
+                            <li><a href="#">Japanese</a></li>
+                        </ul>
+                    </li>*@
                                         <li>
                                             <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
                                             <ul>
@@ -49,11 +51,11 @@
                                     }
                                     <div class="user_icon"><i class="material-icons md-24">person_outline</i></div>
                                     @if (Request.IsAuthenticated)
-                                    {   
-                                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { area="", id = "logoutForm" }))
                                         {
                                             @Html.AntiForgeryToken()
-                                                <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
 
                                         }
                                     }
@@ -202,7 +204,7 @@
                         <div class="footer_column">
                             <div class="footer_title">Customer Care</div>
                             <ul class="footer_list">
-                                <li>@Html.ActionLink("My Account", "Index", "Home", new { area = "" }, null)</li>
+                                <li>@Html.ActionLink("My Account", "Profile", "ExtendUser", new { area = "" }, null)</li>
                                 <li><a href="#">My Orders</a></li>
                                 <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
                             </ul>

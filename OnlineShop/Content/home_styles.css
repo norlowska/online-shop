@@ -2351,7 +2351,7 @@
     display:inline-block;
 }
 
-.contact {
+.content-container {
     background: #FFFFFF;
     padding-top: 80px;
     padding-bottom: 139px;
@@ -2367,4 +2367,11 @@
 
     .submit-button:hover {
         background: #0c5ac2;
+    }
+
+    .profile-row {
+        margin-top: 15px;
+    }
+    .row-margin-top {
+        margin-top:40px;
     }

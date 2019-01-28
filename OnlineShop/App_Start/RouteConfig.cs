@@ -13,18 +13,19 @@ namespace OnlineShop
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "AddingToCart",
-                url: "AddToCart/{action}/{id}/{qty}",
-                defaults: new { controller = "Home", action = "Index", qty = 1}
-            );
+            
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] {"OnlineShop.Controllers"}
-                
+                namespaces: new string[] {"OnlineShop.Controllers"}                
+            );
+
+            routes.MapRoute(
+                name: "AddingToCart",
+                url: "AddToCart/{action}/{id}/{qty}",
+                defaults: new { controller = "Home", action = "Index", qty = 1 }
             );
         }
     }

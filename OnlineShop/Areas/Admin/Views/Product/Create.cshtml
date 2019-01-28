@@ -8,10 +8,10 @@
     ViewBag.Title = "Create new product";
 }
 
-<div class="admin_panel">
+<div class="content-container">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">@Html.ActionLink("Administration Panel", "Index", "Home")</li>
@@ -19,12 +19,16 @@
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>
-                <h2>Add new product</h2>
-                @Html.ActionLink("Back to List", "Index_admin")
+            </div>
+        </div>
+        <div class="row">
+            <h2>Add new product</h2>
+        </div>
+        <div class="row justify-content-center row-margin-top">
+            <div class="col-sm-8">
                 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
-                    <hr />
                     @Html.ValidationSummary(true)
                     <div class="form-group row ml-auto">
                         @Html.LabelFor(model => model.name, "Name", htmlAttributes: new { @class = "control-label col-md-3" })
@@ -85,7 +89,6 @@
         </div>
     </div>
 </div>
-<div style="clear:both;"></div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

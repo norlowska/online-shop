@@ -212,6 +212,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\GeneralSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -229,13 +230,9 @@
     <Compile Include="Migrations\201901271631346_Initial.Designer.cs">
       <DependentUpon>201901271631346_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901271920130_UserFix.cs" />
-    <Compile Include="Migrations\201901271920130_UserFix.Designer.cs">
-      <DependentUpon>201901271920130_UserFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901272205127_ContactModel.cs" />
-    <Compile Include="Migrations\201901272205127_ContactModel.Designer.cs">
-      <DependentUpon>201901272205127_ContactModel.cs</DependentUpon>
+    <Compile Include="Migrations\201901281851053_AdminSettings.cs" />
+    <Compile Include="Migrations\201901281851053_AdminSettings.Designer.cs">
+      <DependentUpon>201901281851053_AdminSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -315,6 +312,7 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Settings.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -421,9 +419,10 @@
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Products\test.cshtml" />
     <Content Include="Views\Home\ContactSuccess.cshtml" />
+    <Content Include="Views\Home\Visits.cshtml" />
+    <Content Include="Views\Home\ContactFail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Files\" />
     <Folder Include="fonts\" />
@@ -444,11 +443,8 @@
     <EmbeddedResource Include="Migrations\201901271631346_Initial.resx">
       <DependentUpon>201901271631346_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901271920130_UserFix.resx">
-      <DependentUpon>201901271920130_UserFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901272205127_ContactModel.resx">
-      <DependentUpon>201901272205127_ContactModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901281851053_AdminSettings.resx">
+      <DependentUpon>201901281851053_AdminSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

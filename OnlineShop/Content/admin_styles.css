@@ -1,4 +1,4 @@
-﻿.admin_panel {
+﻿.content-container {
     padding-top: 80px;
     padding-bottom: 80px;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
@@ -13,4 +13,8 @@
 
 .submit-button:hover {
     background: #0c5ac2;
+}
+
+.row-margin-top {
+    margin-top: 40px;
 }

@@ -24,6 +24,14 @@ namespace OnlineShop.Controllers
             return View();
         }
 
+
+        [ChildActionOnly]
+        public ActionResult Visits()
+        {
+            var counter = _db.counters.First();
+            return PartialView(counter);
+        }
+
         //GET: Home/Contact
         public ActionResult Contact()
         {
@@ -34,20 +42,25 @@ namespace OnlineShop.Controllers
         [HttpPost]
         public ActionResult Contact(Contact c)
         {
-            if (ModelState.IsValid)
+            var addressSettings = _db.adminSettings.ToList().LastOrDefault();
+            if (addressSettings != null)
             {
-                var toAddress = "techtronics.contact@gmail.com";
-                var fromAddress = c.Email.ToString();
-                var subject = c.Subject;
-                var message = new StringBuilder();
-                message.Append("Name: " + c.FirstName + "<br />");
-                message.Append("Email: " + c.Email + "<br />");
-                message.Append(c.Message);
-                var tEmail = new Thread(() =>
-                    SendEmail(toAddress, fromAddress, subject, message.ToString()));
-                tEmail.Start();       
+                var toAddress = addressSettings.ContactAddress;
+                if (ModelState.IsValid)
+                {
+                    var fromAddress = c.Email.ToString();
+                    var subject = c.Subject;
+                    var message = new StringBuilder();
+                    message.Append("Name: " + c.FirstName + "<br />");
+                    message.Append("Email: " + c.Email + "<br />");
+                    message.Append(c.Message);
+                    var tEmail = new Thread(() =>
+                        SendEmail(toAddress, fromAddress, subject, message.ToString()));
+                    tEmail.Start();
+                }
+                return RedirectToAction("ContactSuccess");
             }
-            return RedirectToAction("ContactSuccess");
+            return RedirectToAction("ContactFail");            
         }
 
         public void SendEmail(string toAddress, string fromAddress,
@@ -127,6 +140,11 @@ namespace OnlineShop.Controllers
             return View();
         }
 
+        public ActionResult ContactFail()
+        {
+            return View();
+        }
+
         public ActionResult Buy(int id)
         {
             var model = _db.products.Where(p => p.Id == id);
@@ -135,5 +153,6 @@ namespace OnlineShop.Controllers
             return View(model);
         }
 
+        
     }
 }

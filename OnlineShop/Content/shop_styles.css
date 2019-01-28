@@ -3,11 +3,10 @@
  Shop
 *********************************/
 
-.shop
-{
-	background: #FFFFFF;
-	padding-top: 80px;
-	padding-bottom: 139px;
+.content-container {
+    background: #FFFFFF;
+    padding-top: 80px;
+    padding-bottom: 139px;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
 }
 .shop_content

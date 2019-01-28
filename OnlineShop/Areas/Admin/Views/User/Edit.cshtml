@@ -6,12 +6,22 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
 }
 
-<div class="admin_panel">
+<div class="content-container">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h2>Edit user <i>@Html.DisplayFor(model => model.UserName)</i></h2>
-
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">@Html.ActionLink("Administration Panel", "Index", "Home")</li>
+                    <li class="breadcrumb-item">@Html.ActionLink("Users", "Index", "User")</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <h2>Edit user <i>@Html.DisplayFor(model => model.UserName)</i></h2>
+        </div>
+        <div class="row justify-content-center row-margin-top">
+            <div class="col-sm-8">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -104,10 +114,6 @@
                 }
 
             </div>
-        </div>
-        }
-        <div>
-            @Html.ActionLink("Back to List", "Index")
         </div>
     </div>
 </div>

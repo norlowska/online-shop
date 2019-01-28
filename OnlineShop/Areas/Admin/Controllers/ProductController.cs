@@ -48,7 +48,6 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-
             try
             {
                 product.toDictionary();
