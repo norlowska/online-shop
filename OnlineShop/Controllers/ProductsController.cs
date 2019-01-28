@@ -299,6 +299,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var items = db.categories.ToList();
@@ -422,7 +423,7 @@ namespace OnlineShop.Controllers
             }
             return View(product);
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -581,6 +582,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
