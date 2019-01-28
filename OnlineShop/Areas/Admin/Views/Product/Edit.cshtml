@@ -12,7 +12,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h2>Edit product</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">@Html.ActionLink("Administration Panel", "Index", "Home")</li>
+                        <li class="breadcrumb-item">@Html.ActionLink("Products", "Index", "Product")</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit @Model.name</li>
+                    </ol>
+                </nav>
+                <h2>Edit product @Model.name</h2>
                 @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
@@ -70,6 +77,8 @@
                             </div>
                         </div>
                     </div>
-                            }
+                }
             </div>
         </div>
+    </div>
+</div>
