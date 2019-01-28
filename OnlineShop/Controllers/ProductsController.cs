@@ -21,9 +21,13 @@ namespace OnlineShop.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         
-        public ActionResult Index(int? str)
+        public ActionResult Index(int? str=1)
         {
             int i = db.products.Count();
+           
+            
+             
+            
             if (User.Identity.IsAuthenticated)
             {
                 var id = User.Identity.GetUserId();
@@ -34,9 +38,10 @@ namespace OnlineShop.Controllers
                 ViewBag.pom = cUser.Ograniczeni;
               
                 
-                if(i>cUser.Ograniczeni)
+                if(i>cUser.Ograniczeni && cUser.Ograniczeni!=0)
                 {
                     int reszta = i % cUser.Ograniczeni;
+
                     if(reszta==0)
                     {
                         ViewBag.ilosc_stron = i / cUser.Ograniczeni;
@@ -81,8 +86,17 @@ namespace OnlineShop.Controllers
                 }
                 else
                 {
+
                     int limit = 5;
                     int reszta = i % limit;
+                    if(i<limit)
+                    {
+                        ViewBag.str = 1;
+                        ViewBag.i = 0;
+                        ViewBag.ilosc_stron = 1;
+                        ViewBag.Ograniczeni = i;
+                        return View(db.products.ToList());
+                    }
                     if(reszta==0)
                     {
                         ViewBag.ilosc_stron = i / limit;
@@ -131,6 +145,14 @@ namespace OnlineShop.Controllers
             {
                 int limit = 5;
                 int reszta = i % limit;
+                if (i < limit)
+                {
+                    ViewBag.str = 1;
+                    ViewBag.i = 0;
+                    ViewBag.ilosc_stron = 1;
+                    ViewBag.Ograniczeni = i;
+                    return View(db.products.ToList());
+                }
                 if (reszta == 0)
                 {
                     ViewBag.ilosc_stron = i / limit;

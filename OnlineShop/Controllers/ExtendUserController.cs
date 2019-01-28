@@ -26,15 +26,22 @@ namespace OnlineShop.Controllers
             return View(_db.Users.ToList());
         }
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string id)
 
         {
-           
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        
+           var model = _db.Users.Single(p => p.Id == id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
 
 
-            var model = _db.Users.Single(p => p.Id == id);
-            
             ViewBag.Rola = new SelectList(_db.Roles, "Id", "Name");
            return View(model);
         }
@@ -77,7 +84,7 @@ namespace OnlineShop.Controllers
 
         ////localhost:5528/ExtendUser/SendEmail
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult SendEmail()
         {
             try
@@ -134,7 +141,7 @@ namespace OnlineShop.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(ApplicationUser user,string password,string cpassword ,FormCollection form)
         {
@@ -205,7 +212,7 @@ namespace OnlineShop.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.Rola = new SelectList(_db.Roles, "Id", "Name");
@@ -246,7 +253,7 @@ namespace OnlineShop.Controllers
         }
 
 
-
+        [Authorize]
         public ActionResult profil()
         {
             var id = User.Identity.GetUserId();
@@ -258,7 +265,7 @@ namespace OnlineShop.Controllers
             return View(cUser);
         }
 
-
+        [Authorize]
         public ActionResult Edit_profil()
         {
             var id = User.Identity.GetUserId();
@@ -331,30 +338,46 @@ namespace OnlineShop.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+    
+         
+
             UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(_db);
             ApplicationUserManager userManager = new ApplicationUserManager(store);
             ApplicationUser cUser= userManager.FindById(id);
+            if (cUser == null)
+            {
+                return HttpNotFound();
+            }
             userManager.Delete(cUser);
             
             return RedirectToAction("Index", "ExtendUser");
         }
-            
-        
+
+        [Authorize(Roles = "Admin")]
         public ActionResult List_discount()
         {
             var model = _db.discount_user.ToList();
             ViewBag.user = _db.Users.ToList();
             return View(model);
         }
-           
 
-      
 
-        public ActionResult Delate_discount(int  id)
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delate_discount(int?  id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var user = _db.discount_user.Where(p => p.Id == id).FirstOrDefault();
             _db.discount_user.Remove(user);
             _db.SaveChanges();
@@ -363,7 +386,7 @@ namespace OnlineShop.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Creat_discoint()
         {
             ViewBag.User = new SelectList(_db.Users, "Id", "Email");

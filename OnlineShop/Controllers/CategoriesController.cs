@@ -42,6 +42,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var items = db.categories.ToList();
@@ -68,6 +69,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Categories/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,7 +100,7 @@ namespace OnlineShop.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +115,7 @@ namespace OnlineShop.Controllers
             return View(category);
         }
 
-        // POST: Categories/Delete/5
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
