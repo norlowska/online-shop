@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DiscountController : Controller
     {
 
@@ -17,8 +18,12 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        [Authorize(Roles = "Admin")]
-        // GET: Admin/Discount
+
+        //
+        /// <summary>
+        ///  GET: Admin/Discount
+        /// </summary>
+        /// <returns>List Discoutn</returns>
         public ActionResult Index()
         {
             var model = _db.discount_user.ToList();
@@ -34,6 +39,12 @@ namespace OnlineShop.Areas.Admin.Controllers
 
 
         [Authorize(Roles = "Admin")]
+
+        
+        /// <summary>
+        ///  Delete Discount by id
+        /// </summary>
+        /// <returns>Redirect to Action</returns>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -47,7 +58,10 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction("Index", "Discount");
         }
 
-        
+        /// <summary>
+        ///  GET Create new Discount
+        /// </summary>
+        /// <returns> the new view redirects this form to Create template </returns>
         public ActionResult Create()
         {
             ViewBag.User = new SelectList(_db.Users, "Id", "Email");
@@ -57,8 +71,14 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View();
         }
 
-
+        /// <summary>
+        ///  httpPost Create new Discount
+        /// </summary>
+        /// <param name="discount"></param>
+        /// <param name="form"></param>
+        /// <returns>Redirect to Action  </returns>
         [HttpPost]
+        
         public ActionResult Create(discount_for_user discount, FormCollection form)
         {
 

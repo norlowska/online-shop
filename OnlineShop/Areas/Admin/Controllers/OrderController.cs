@@ -11,14 +11,23 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         ApplicationDbContext baza = new ApplicationDbContext();
-        // GET: Admin/Order
+   
+        /// <summary>
+        ///  GET: Admin/Order
+        /// </summary>
+        /// <returns> List Order</returns>
         public ActionResult Index()
         {
             var model = baza.Orders.ToList();
             return View(model);
         }
 
-        // GET: Admin/Order/Details/5
+         
+        /// <summary>
+        /// GET: Admin/Order/Details/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View Details Order</returns>
         public ActionResult Details(int id)
         {
             var model = baza.OrderDetails.Where(od => od.OrderId == id).ToList();
@@ -26,7 +35,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/Order/Edit/5
+        // 
+        /// <summary>
+        /// GET: Admin/Order/Edit/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View Edit Order </returns>
         public ActionResult Edit(int id)
         {
             Order model = baza.Orders.Single(o => o.OrderId == id);         
@@ -34,6 +48,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         // POST: Admin/Order/Edit/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="o"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int id, Order o)
         {
@@ -50,15 +70,26 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Order/Delete/5
+        
+        /// <summary>
+        /// GET: Admin/Order/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View Delet Order</returns>
         public ActionResult Delete(int id)
         {
             var model = baza.Orders.Find(id);
             return View(model);
         }
 
-        // POST: Admin/Order/Delete/5
-        [HttpPost]
+
+        /// <summary>
+        ///    POST: Admin/Order/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="o"></param>
+        /// <returns>Redirect To Action </returns>
+        [HttpPost] 
         public ActionResult Delete(int id, Order o)
         {
             try

@@ -17,7 +17,11 @@ namespace OnlineShop.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/Product
+ 
+        /// <summary>
+        ///  GET: Admin/Product
+        /// </summary>
+        /// <returns>List Product</returns>
         public ActionResult Index()
         {
             var m = User.Identity.Name;
@@ -25,14 +29,23 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/Product/Create
+        
+        /// <summary>
+        /// GET: Admin/Product/Create
+        /// </summary>
+        /// <returns>View Create Product</returns>
         public ActionResult Create()
         {
             var items = db.categories.ToList();
             ViewBag.CategoriesList = items;
             return View();
         }
-
+        /// <summary>
+        /// Creat new Product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="fileDescription"></param>
+        /// <returns> Redirect To Action</returns>
         // POST: Admin/Product/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -151,7 +164,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
 
-        // GET: Admin/Product/Edit/{id}
+
+        /// <summary>
+        /// GET: Admin/Product/Edit/{id}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View with Produkt which will be Edit</returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -167,7 +185,13 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(produkt);
         }
 
-        //POST: Admin/Product/Edit
+
+        /// <summary>
+        ///  POST: Admin/Product/Edit
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="fileDescription"></param>
+        /// <returns>Redirect To Action </returns>
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product product, String fileDescription)
@@ -277,7 +301,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(prduktToUpdate);
         }
 
-        // GET: Products/Delete/5
+
+        /// <summary>
+        ///   GET: Products/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View  with Products which will be delete</returns>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -292,7 +321,13 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+
+        /// <summary>
+        /// POST: Products/Delete/5
+        /// Delete Products
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Redirect To Action</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

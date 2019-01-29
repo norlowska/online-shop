@@ -14,22 +14,38 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
-        // GET: Admin/User
+
+       
+        /// <summary>
+        /// GET: Admin/User
+        /// </summary>
+        /// <returns>List User</returns>
         public ActionResult Index()
         {
             var model = db.Users.ToList();
             return View(model);
         }
 
-        // GET: Admin/User/Create
+
+        /// <summary>
+        ///  GET: Admin/User/Create
+        /// </summary>
+        /// <returns>View Create User</returns>
         public ActionResult Create()
         {
             ViewBag.Rola = new SelectList(db.Roles, "Id", "Name");
             return View();
         }
 
-        // POST: Admin/User/Create
+        /// <summary>
+        /// 
+        ///     POST: Admin/User/Create
+        ///     Create User          
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="password"></param>
+        /// <param name="form"></param>
+        /// <returns> Redirect To Action</returns>
         [HttpPost]
         public ActionResult Create(string Email, string password, FormCollection form)
         {
@@ -48,7 +64,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction("Index", "User");
         }
 
-        // GET: Admin/User/Edit/{id}
+
+        /// <summary>
+        /// // GET: Admin/User/Edit/{id}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> View Edit User</returns>
         public ActionResult Edit(string id)
         {
 
@@ -61,7 +82,14 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(model);
         }
 
-        // POST: Admin/User/Edit
+        /// <summary>
+        ///  POST: Admin/User/Edit
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <param name="cpassword"></param>
+        /// <param name="form"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(ApplicationUser user, string password, string cpassword, FormCollection form)
         {
@@ -99,6 +127,11 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "User");
         }
+
+        /// <summary>
+        /// SendEmail
+        /// </summary>
+        /// <returns>Redirect To Action</returns>
 
         public ActionResult SendEmail()
         {
@@ -164,7 +197,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction("Index", "User");
         }
 
-
+        /// <summary>
+        /// GET: Delete User
+        /// Delete User
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Delete User</returns>
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {

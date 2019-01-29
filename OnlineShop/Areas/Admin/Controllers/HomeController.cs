@@ -13,22 +13,34 @@ namespace OnlineShop.Areas.Admin.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/Home
+
+        /// <summary>
+        ///   GET: Admin/Home
+        /// </summary>
+        /// <returns> View Templet</returns>
         public ActionResult Index()
         {            
             return View();
         }
-
+        /// <summary>
+        /// GET  Url Settings
+        /// </summary>
+        /// <returns> PartialView</returns>
         [HttpGet]
         [ChildActionOnly]
+       
         public ActionResult Settings()
         {
             var adminSettings = db.adminSettings.ToList().LastOrDefault();
             return PartialView(adminSettings);
         }
-
+        /// <summary>
+        /// POST  Url Settings
+        /// </summary>
+        /// <returns> PartialView</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public ActionResult Settings([Bind(Include = "Id,ContactAddress")]GeneralSettings adminSettings)
         {
             if (ModelState.IsValid)

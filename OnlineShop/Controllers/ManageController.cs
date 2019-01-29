@@ -10,6 +10,8 @@ using OnlineShop.Models;
 
 namespace OnlineShop.Controllers
 {
+
+   
     [Authorize]
     public class ManageController : Controller
     {
@@ -20,12 +22,20 @@ namespace OnlineShop.Controllers
         {
         }
 
+        /// <summary>
+        /// GEt
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
+        /// <summary>
+        /// SigininManger
+        /// </summary>
         public ApplicationSignInManager SignInManager
         {
             get
@@ -37,7 +47,9 @@ namespace OnlineShop.Controllers
                 _signInManager = value; 
             }
         }
-
+        /// <summary>
+        /// USerManager
+        /// </summary>
         public ApplicationUserManager UserManager
         {
             get
@@ -51,7 +63,12 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // GET: /Manage/Index
+
+        /// <summary>
+        ///  GET: /Manage/Index
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>View </returns>
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -76,7 +93,12 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // POST: /Manage/RemoveLogin
+        /// <summary>
+        ///     Login off
+        /// </summary>
+        /// <param name="loginProvider"></param>
+        /// <param name="providerKey"></param>
+        /// <returns>RedirectToAction</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -101,6 +123,10 @@ namespace OnlineShop.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        /// <summary>
+        /// GET: /Manage/AddPhoneNumber
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -108,6 +134,11 @@ namespace OnlineShop.Controllers
 
         //
         // POST: /Manage/AddPhoneNumber
+        /// <summary>
+        /// GET: /Manage/AddPhoneNumber
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Redirect To Action</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -131,7 +162,11 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // POST: /Manage/EnableTwoFactorAuthentication
+        // 
+        /// <summary>
+        /// POST: /Manage/EnableTwoFactorAuthentication
+        /// </summary>
+        /// <returns> Redirect T oAction</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
@@ -144,9 +179,11 @@ namespace OnlineShop.Controllers
             }
             return RedirectToAction("Index", "Manage");
         }
-
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
+        
+        /// <summary>
+        /// POST: /Manage/DisableTwoFactorAuthentication
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
@@ -161,7 +198,11 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // GET: /Manage/VerifyPhoneNumber
+        /// <summary>
+        /// VerifyPhoneNumber
+        /// </summary>
+        /// <param name="phoneNumber"></param>
+        /// <returns></returns>
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -170,7 +211,11 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // POST: /Manage/VerifyPhoneNumber
+        /// <summary>
+        /// VerifyPhoneNumber
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -195,7 +240,10 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // POST: /Manage/RemovePhoneNumber
+       /// <summary>
+       /// RemovePhoneNumber
+       /// </summary>
+       /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -214,14 +262,23 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // GET: /Manage/ChangePassword
+        // 
+        /// <summary>
+        /// GET: /Manage/ChangePassword
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ChangePassword()
         {
             return View();
         }
 
         //
-        // POST: /Manage/ChangePassword
+        /// <summary>
+        /// POST
+        /// ChangePassword
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -246,13 +303,21 @@ namespace OnlineShop.Controllers
 
         //
         // GET: /Manage/SetPassword
+        /// <summary>
+        ///  GET: /Manage/SetPassword
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SetPassword()
         {
             return View();
         }
 
         //
-        // POST: /Manage/SetPassword
+        /// <summary>
+        /// SetPassword
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -277,7 +342,11 @@ namespace OnlineShop.Controllers
         }
 
         //
-        // GET: /Manage/ManageLogins
+        /// <summary>
+        /// ManageLogins
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =

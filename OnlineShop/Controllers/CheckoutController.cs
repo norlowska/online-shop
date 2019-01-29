@@ -14,7 +14,13 @@ namespace OnlineShop.Controllers
     public class CheckoutController : Controller
     {
         ApplicationDbContext storeDB = new ApplicationDbContext();
-        // GET: Checkout
+
+
+
+        /// <summary>
+        ///  GET: Checkout
+        /// </summary>
+        /// <returns>List Checkout</returns>
         public ActionResult AddressAndPayment()
         {
             var order = new Order();
@@ -45,6 +51,12 @@ namespace OnlineShop.Controllers
             return View(order);
         }
 
+
+        /// <summary>
+        /// AddresandPAyment  
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns>  Redirect To Action</returns>
         [HttpPost]
         public ActionResult AddressAndPayment(Order order)
         {
@@ -67,6 +79,11 @@ namespace OnlineShop.Controllers
             }
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Complete(int id)
         {
             bool isValid = storeDB.Orders.Any(o => o.OrderId == id && o.Username == User.Identity.Name);

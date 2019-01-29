@@ -21,9 +21,7 @@ namespace OnlineShop.Controllers
         private ApplicationUserManager _userManager;
        
 
-        public AccountController()
-        {
-        }
+     
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {

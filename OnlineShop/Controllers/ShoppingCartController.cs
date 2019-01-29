@@ -13,7 +13,12 @@ namespace OnlineShop.Controllers
     public class ShoppingCartController : Controller
     {
         ApplicationDbContext storeDB = new ApplicationDbContext();
-        // GET: ShoppingCart
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public ActionResult Index(int str=0)
         {
 

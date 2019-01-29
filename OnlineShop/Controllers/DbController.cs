@@ -9,6 +9,9 @@ namespace OnlineShop.Controllers
 {
     public class DbController : Controller
     {
+        /// <summary>
+        /// Dbcontex
+        /// </summary>
         protected ApplicationDbContext _db = new ApplicationDbContext();
         protected override void Dispose(bool disposing)
         {

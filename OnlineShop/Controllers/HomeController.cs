@@ -11,12 +11,20 @@ namespace OnlineShop.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
+        /// <summary>
+        /// GET Store
+        /// </summary>
+        /// <returns>List products</returns>
         public ActionResult Index()
         {
             var model = _db.products.ToList();
             return View(model);
         }
 
+        /// <summary>
+        /// About
+        /// </summary>
+        /// <returns></returns>
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -24,7 +32,10 @@ namespace OnlineShop.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Get Visit
+        /// </summary>
+        /// <returns>PartialView</returns>
         [ChildActionOnly]
         public ActionResult Visits()
         {
@@ -32,13 +43,21 @@ namespace OnlineShop.Controllers
             return PartialView(counter);
         }
 
-        //GET: Home/Contact
+        /// <summary>
+        ///  GET: Home/Contact
+        /// </summary>
+        /// <returns>View Contac</returns>
+
         public ActionResult Contact()
         {
             return View();
         }
+        /// <summary>
+        ///  POST: Home/Contact
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns> Contac </returns>
 
-        //POST: Home/Contact
         [HttpPost]
         public ActionResult Contact(Contact c)
         {
@@ -135,16 +154,30 @@ namespace OnlineShop.Controllers
 
         }
 
+        /// <summary>
+        /// Success
+        /// </summary>
+        /// <returns>View Success</returns>
         public ActionResult ContactSuccess()
         {
             return View();
         }
 
+        /// <summary>
+        /// ContacFail
+        /// </summary>
+        /// <returns> view contacfail</returns>
         public ActionResult ContactFail()
         {
             return View();
         }
 
+
+        /// <summary>
+        /// Buy Products
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> View Produts</returns>
         public ActionResult Buy(int id)
         {
             var model = _db.products.Where(p => p.Id == id);

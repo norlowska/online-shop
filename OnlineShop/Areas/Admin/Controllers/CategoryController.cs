@@ -14,14 +14,23 @@ namespace OnlineShop.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/Category
+       
+
+        /// <summary>
+        /// GET: Admin/Category
+        /// </summary>
+        /// <returns>List Category</returns>
         public ActionResult Index()
         {
             var model = db.categories.ToList();
             return View(model);
         }
 
-        // GET: Admin/Category/Create
+
+        /// <summary>
+        /// GET: Admin/Category/Create
+        /// </summary>
+        /// <returns>the new view redirects this form to Create  Category template  </returns>
         public ActionResult Create()
         {
             var items = db.categories.ToList();
@@ -30,9 +39,14 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Categories/Create
+        
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Categories/Create
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>New category</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,name")] Category category)
@@ -47,7 +61,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Categories/Edit/5
+
+        /// <summary>
+        /// GET: Admin/Categories/Edit/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Category which be edit</returns>
         public ActionResult Edit(int? id)
         {
             var items = db.categories.ToList();
@@ -69,6 +88,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Edit([Bind(Include = "Id,name,parent")] Category category)
         {
             if (ModelState.IsValid)
@@ -91,7 +111,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Categories/Delete/5
+
+        /// <summary>
+        ///  GET Admin/Categories/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Category which be delete</returns>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,9 +131,14 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/Categories/Delete/5
+        /// <summary>
+        /// POST Category  delete
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>redirects to aonther action </returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+       
         public ActionResult DeleteConfirmed(int id)
         {
             Category category = db.categories.Find(id);

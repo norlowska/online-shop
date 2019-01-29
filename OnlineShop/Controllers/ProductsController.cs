@@ -20,7 +20,11 @@ namespace OnlineShop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
+/// <summary>
+/// GET  Products
+/// </summary>
+/// <param name="str"></param>
+/// <returns>Products</returns>
         public ActionResult Index(int? str = 1)
         {
             int i = db.products.Count();
@@ -184,7 +188,14 @@ namespace OnlineShop.Controllers
             return View(model);
         }
 
-        // GET: Products
+        /// <summary>
+        /// Search products with parameters:
+        /// </summary>
+        /// <param name="minPrice"></param>
+        /// <param name="maxPrice"></param>
+        /// <param name="count"></param>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public ActionResult Search(int? minPrice, int? maxPrice, int? count, string search=null)
         {
             IEnumerable<Product> model = null;
@@ -225,6 +236,12 @@ namespace OnlineShop.Controllers
         }
         static List<Product> Koszyk = new List<Product>();
 
+
+        /// <summary>
+        /// Adding products to customers' cart
+        /// </summary>
+        /// <param name="id">product's id</param>
+        /// <returns></returns>
         public ActionResult add_to_cart(int? id)
         {
             if (id == null)
@@ -250,6 +267,11 @@ namespace OnlineShop.Controllers
         }
 
 
+        /// <summary>
+        /// Removing products from customer's cart
+        /// </summary>
+        /// <param name="id">product's id</param>
+        /// <returns></returns>
         public ActionResult remove_item_in_cart(int? id)
         {
             if (id == null)
@@ -271,7 +293,13 @@ namespace OnlineShop.Controllers
         }
 
 
-        // GET: Products/Details/5
+
+
+        /// <summary>
+        /// GET details of product
+        /// </summary>
+        /// <param name="id">product's id</param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -294,12 +322,26 @@ namespace OnlineShop.Controllers
             return View(product);
         }
 
+
+        /// <summary>
+        /// Redirect to AddToCart action
+        /// </summary>
+        /// <param name="p">added product</param>
+        /// <param name="quantity">quantity of added product</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Details(Product p, int quantity)
         {
             return Redirect("/ShoppingCart/AddToCart/" + p.Id + "?qty=" + quantity);
         }
 
+
+        /// <summary>
+        /// Download product's extra file
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult DownloadFile(String list, int id)
         {
 
@@ -343,6 +385,11 @@ namespace OnlineShop.Controllers
             base.Dispose(disposing);
         }
 
+
+        /// <summary>
+        /// Partial view with categories menu
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult CategoriesMenu()
         {

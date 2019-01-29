@@ -9,6 +9,10 @@ namespace OnlineShop.Controllers
 {
     public class ProductController : Controller
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
        
         List<Product> products = new List<Product>
         {

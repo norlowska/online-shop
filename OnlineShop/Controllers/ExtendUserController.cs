@@ -15,10 +15,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 namespace OnlineShop.Controllers
 {
+
     [Authorize(Roles = "Admin")]
     public class ExtendUserController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
 
         public ActionResult Index()
         {
@@ -27,7 +32,11 @@ namespace OnlineShop.Controllers
         
        
 
-            
+       
+        /// <summary>
+        /// GET Profile
+        /// </summary>
+        /// <returns>Get user View</returns>
         public ActionResult Profile()
         {
             var id = User.Identity.GetUserId();
@@ -38,7 +47,10 @@ namespace OnlineShop.Controllers
             return View(cUser);
         }
 
-
+        /// <summary>
+        /// GET EditProfile
+        /// </summary>
+        /// <returns>View Edit Profiel</returns>
         public ActionResult EditProfile()
         {
             var id = User.Identity.GetUserId();
@@ -49,7 +61,15 @@ namespace OnlineShop.Controllers
             return View(cUser);
         }
 
-
+        /// <summary>
+        /// POST EditProfil
+        /// Edit Profil
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <param name="cpassword"></param>
+        /// <param name="form"></param>
+        /// <returns>Redirect To Action </returns>
         [HttpPost]
         public ActionResult EditProfile(ApplicationUser user, string password, string cpassword, FormCollection form)
         {
