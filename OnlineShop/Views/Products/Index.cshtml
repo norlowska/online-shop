@@ -6,7 +6,7 @@
     ViewBag.Title = "Products";
 }
 <!-- Shop -->
-<div class="shop">
+<div class="content-container">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -124,10 +124,6 @@
                                     <div class="product_content">
                                         <div class="product_price">@Html.DisplayFor(modelItem => Model.ElementAt(a).price)</div>
                                         <div class="product_name"><div>@Html.ActionLink(Model.ElementAt(a).name, "Details", "Products", new { id = Model.ElementAt(a).Id }, null)</div></div>
-                                    </div>
-                                    <div>
-                                        @Html.ActionLink("buy now", "buy/" + Model.ElementAt(a).Id, "Home") <br />
-                                        @Html.ActionLink("add to cart", "AddToCart/" + Model.ElementAt(a).Id, "ShoppingCart")
                                     </div>
                                 </div>
                             }

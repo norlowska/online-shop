@@ -4,58 +4,77 @@
     ViewBag.Title = "Twój koszyk";
 }
 
-<h3>Twój koszyk</h3>
+@section styles {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
+}
+<div class="content-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">@Html.ActionLink("Administration Panel", "Index", "Home")</li>
+                        <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                    </ol>
+                </nav>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>Shopping cart</h2>
+                    </div>
+                </div>
+                <p class="button">
+                    @Html.ActionLink("Do kasy >>", "AddressAndPayment", "Checkout")
+                </p>
+                <div id="update-message"></div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Nazwa
+                        </th>
+                        <th>
+                            Opis
+                        </th>
+                        <th>
+                            Cena
+                        </th>
+                        <th>
+                            Ilość
+                        </th>
+                    </tr>
 
-<p class="button">
-    @Html.ActionLink("Do kasy >>", "AddressAndPayment", "Checkout")
-</p>
-<div id="update-message"></div>
-<table class="table">
-    <tr>
-        <th>
-            Nazwa
-        </th>
-        <th>
-            Opis
-        </th>
-        <th>
-            Cena
-        </th>
-        <th>
-            Ilość
-        </th>
-    </tr>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr id="row-c">
+                            <td>
+                                @Html.ActionLink(item.Product.name, "Details", "Products", new { id = item.ProductId }, null)
+                            </td>
+                            <td>
+                                @item.Product.name
+                            </td>
+                            <td>
+                                @item.Product.price
+                            </td>
+                            <td id="item-count-@item.RecordId">
+                                @item.Count
+                            </td>
+                            <td>
+                                @Html.ActionLink("Usuń", "RemoveFromCart", "ShoppingCart", new { id = item.RecordId }, null)
+                            </td>
+                        </tr>
+                    }
 
-    @foreach (var item in Model.CartItems)
-    {
-    <tr id="row-c">
-        <td>
-            @Html.ActionLink(item.Product.name, "Details", "Products", new { id = item.ProductId }, null)
-        </td>
-        <td>
-            @item.Product.name
-        </td>
-        <td>
-            @item.Product.price
-        </td>
-        <td id="item-count-@item.RecordId">
-            @item.Count
-        </td>
-        <td>
-             @Html.ActionLink("Usuń","RemoveFromCart","ShoppingCart",new { id = item.RecordId },null)
-        </td>
-    </tr>
-    }
-
-    <tr>
-        <td>
-            <p>Suma:</p>
-        </td>
-        <td></td>
-        <td></td>
-        <td id="cart-total">
-            @Model.CartTotal
-        </td>
-    </tr>
-</table>
-
+                    <tr>
+                        <td>
+                            <p>Suma:</p>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td id="cart-total">
+                            @Model.CartTotal
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

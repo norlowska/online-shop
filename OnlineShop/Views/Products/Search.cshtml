@@ -13,34 +13,38 @@
 <div class="content-container">
     <div class="container">
         <!-- Search -->
-        <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-            <div class="header_search">
-                <div class="header_search_content">
-                    <div class="header_search_form_container">
-                        <form method="get" class="header_search_form clearfix">
+
+            <form method="get" class="row header_search_form clearfix">
+                <div class="col-md-6">
+                    <div class="header_search_content">
+                        <div class="header_search_form_container">
                             <input type="text" name="search" required="required" class="header_search_input" placeholder="Search for products...">
                             <button type="submit" class="header_search_button trans_300" value="search"><i class="material-icons md-24 md-light">search</i></button>
 
                             @*<p><input type="text" name="search" /> <input type="submit" value="search" /> </p>*@
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <p>Cena minimalna<input type="text" name="minPrice" /></p>
-        <p>Cena maksymalna<input type="text" name="maxPrice" /></p>
-        <p>Ilosc<input type="text" name="count" /></p>
-        </form>
-        <div class="row">
-            <div class="col-lg-3">
+                <div class="col-md-2">
+                    <input placeholder="Cena minimalna" type="text" name="minPrice" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input placeholder="Cena maksymalna" type="text" name="maxPrice" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input placeholder="Ilość" type="text" name="count" class="form-control" />
+                </div>
+            </form>
+            <div class="row row-margin-top">
+                <div class="col-lg-3">
 
-                <!-- Shop Sidebar -->
-                <div class="shop_sidebar">
-                    <div class="sidebar_section">
-                        <div class="sidebar_title">Categories</div>
-                        @{ Html.RenderAction("CategoriesMenu", "Products");}
-                    </div>
-                    @*<div class="sidebar_section filter_by_section">
+                    <!-- Shop Sidebar -->
+                    <div class="shop_sidebar">
+                        <div class="sidebar_section">
+                            <div class="sidebar_title">Categories</div>
+                            @{ Html.RenderAction("CategoriesMenu", "Products");}
+                        </div>
+                        @*<div class="sidebar_section filter_by_section">
                         <div class="sidebar_title">Filter By</div>
                         <div class="sidebar_subtitle">Price</div>
                         <div class="filter_price">
@@ -73,82 +77,82 @@
                             <li class="brand"><a href="#">Xiaomi</a></li>
                         </ul>
                     </div>*@
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="col-lg-9">
 
-            <div class="col-lg-9">
+                    <!-- Shop Content -->
 
-                <!-- Shop Content -->
-
-                <div class="shop_content">
-                    <div class="shop_bar clearfix">
-                        @*
+                    <div class="shop_content">
+                        <div class="shop_bar clearfix">
+                            @*
                         <div class="shop_product_count"><span>@Model.Count</span> products found</div>*@
-                        <div class="shop_sorting">
-                            <span>Sort by:</span>
-                            <ul>
-                                <li>
-                                    <span class="sorting_text">highest rated<i class="material-icons md-24">keyboard_arrow_down</i></span>
-                                    <ul>
-                                        <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
-                                        <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-                                        <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>price</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="product_grid">
-                        <div class="product_grid_border"></div>
-                        <!-- Product Item -->
-                        @foreach (var product in Model)
-                        {
-                            <div class="product_item is_new">
-                                <div class="product_border"></div>
-                                <div class="product_image d-flex flex-column align-items-center justify-content-center">
-                                    @if (!product.image.ContainsKey("smaller"))
-                                    {
-                                        <img class="img-responsive" src="https://via.placeholder.com/115x115.png" />
-                                    }
-                                    else
-                                    {
-                                        <img class="img-responsive" src=@(product.image["smaller"]) />
-                                    }
-                                </div>
-                                <div class="product_content">
-                                    <div class="product_price">@Html.DisplayFor(modelItem => product.price)</div>
-                                    <div class="product_name"><div>@Html.ActionLink(product.name, "Details", "Products", new { id = product.Id }, null)</div></div>
-                                </div>
-                                <div>
-                                    @Html.ActionLink("buy now", "buy/" + product.Id, "Home") <br />
-                                    @Html.ActionLink("add to cart", "AddToCart/" + product.Id, "ShoppingCart", new { qty = 1 }, null)
-                                </div>
+                            <div class="shop_sorting">
+                                <span>Sort by:</span>
+                                <ul>
+                                    <li>
+                                        <span class="sorting_text">highest rated<i class="material-icons md-24">keyboard_arrow_down</i></span>
+                                        <ul>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>price</li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
-                        }
+                        </div>
 
-                    </div>
+                        <div class="product_grid">
+                            <div class="product_grid_border"></div>
+                            <!-- Product Item -->
+                            @foreach (var product in Model)
+                            {
+                                <div class="product_item is_new">
+                                    <div class="product_border"></div>
+                                    <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                        @if (!product.image.ContainsKey("smaller"))
+                                        {
+                                            <img class="img-responsive" src="https://via.placeholder.com/115x115.png" />
+                                        }
+                                        else
+                                        {
+                                            <img class="img-responsive" src=@(product.image["smaller"]) />
+                                        }
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="product_price">@Html.DisplayFor(modelItem => product.price)</div>
+                                        <div class="product_name"><div>@Html.ActionLink(product.name, "Details", "Products", new { id = product.Id }, null)</div></div>
+                                    </div>
+                                    <div>
+                                        @Html.ActionLink("buy now", "buy/" + product.Id, "Home") <br />
+                                        @Html.ActionLink("add to cart", "AddToCart/" + product.Id, "ShoppingCart", new { qty = 1 }, null)
+                                    </div>
+                                </div>
+                            }
 
-                    <!-- Shop Page Navigation -->
+                        </div>
 
-                    <div class="shop_page_nav d-flex flex-row">
-                        <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="material-icons md-24">chevron_left</i></div>
-                        <ul class="page_nav d-flex flex-row">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">...</a></li>
-                            <li><a href="#">21</a></li>
-                        </ul>
-                        <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="material-icons md-24">chevron_right</i></i></div>
+                        <!-- Shop Page Navigation -->
+
+                        <div class="shop_page_nav d-flex flex-row">
+                            <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="material-icons md-24">chevron_left</i></div>
+                            <ul class="page_nav d-flex flex-row">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">21</a></li>
+                            </ul>
+                            <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="material-icons md-24">chevron_right</i></i></div>
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
         </div>
-    </div>
 </div>
 
 

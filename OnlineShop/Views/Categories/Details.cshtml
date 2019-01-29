@@ -4,56 +4,52 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+@section styles {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/shop_styles.css")" />
+}
 
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+<div class="content-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="row">
+                    <h2>Category @Model.name</h2>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.Product)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
+                            </td>
+                            <td>
+                                @Html.Raw(item.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </td>
+                            <td>
+                                @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
+                                @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
+                            </td>
+                        </tr>
+                    }
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                </table>
 
-    </dl>
-    <table class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Price
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model.Product)
-            {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
-                </td>
-                <td>
-                    @Html.Raw(item.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.price)
-                </td>
-                <td>
-                    @Html.ActionLink("buy now", "buy/" + item.Id, "Home") <br />
-                    @Html.ActionLink("add to cart", "add_to_cart/" + item.Id, "Products")
-                </td>
-            </tr>
-        }
-
-    </table>
-
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    
-</p>

@@ -48,7 +48,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.ActionLink(item.name, "Details", "Products", new { id = item.Id }, null)
+                                @Html.ActionLink(item.name, "Details", "Products", new { area = "", id = item.Id }, null)
                             </td>
                             <td>
                                 @Html.Raw(item.description)

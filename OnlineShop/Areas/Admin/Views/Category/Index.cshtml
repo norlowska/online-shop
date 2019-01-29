@@ -41,7 +41,7 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.name)
+                                    @Html.ActionLink(item.name, "Details", "Category", new { area = "", id = item.Id }, null)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.parent.name)
