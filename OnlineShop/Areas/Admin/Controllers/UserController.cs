@@ -106,12 +106,24 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string New = "";
+                    var model = db.products;
                     var senderEmail = new MailAddress("reklamashoppshopp@gmail.com", "Admin");
                     var receiverEmail = new MailAddress("2e.sienkiewicz@gmail.com", "Receiver");
+                    foreach (var a in model)
+                    {
+                        var pom = (a.Add_date - DateTime.Now).Days;
+                        if (pom <= 3)
+                        {
+                            New = New + "\n" + a.name + " "+"Cena" + a.price;
+                        }
+                    }
+
+
 
                     var password = "patrykPp@123";
                     var sub = "test";
-                    var body = "Witam dziala a przynajmnije powino";
+                    var body = "Lista Nowosci:" + New;
                     var smtp = new SmtpClient
                     {
                         Host = "smtp.gmail.com",
