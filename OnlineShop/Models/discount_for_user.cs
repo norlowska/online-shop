@@ -13,9 +13,6 @@ namespace OnlineShop.Models
 
       public  int percent { get; set; }
 
-        [DataType(DataType.DateTime)]
-        public  DateTime expiration_date { get; set; }
-
         public  ApplicationUser User{ get; set; }
 
 

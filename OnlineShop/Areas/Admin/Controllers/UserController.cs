@@ -51,7 +51,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/User/Edit/{id}
         public ActionResult Edit(string id)
         {
+
+            if (id == null)
+                return HttpNotFound();
             var model = db.Users.Single(p => p.Id == id);
+            if (model == null)
+                return HttpNotFound();
             ViewBag.Rola = new SelectList(db.Roles, "Id", "Name");
             return View(model);
         }
@@ -146,5 +151,30 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "User");
         }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+
+
+            UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+            ApplicationUserManager userManager = new ApplicationUserManager(store);
+            ApplicationUser cUser = userManager.FindById(id);
+            if (cUser == null)
+            {
+                return HttpNotFound();
+            }
+            userManager.Delete(cUser);
+
+            return RedirectToAction("Index", "User");
+        }
+
     }
 }

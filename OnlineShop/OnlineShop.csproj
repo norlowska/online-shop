@@ -210,6 +210,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
@@ -229,6 +230,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+
+
+    <Compile Include="Migrations\201901290133101_Data.cs" />
+    <Compile Include="Migrations\201901290133101_Data.Designer.cs">
+      <DependentUpon>201901290133101_Data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901290237240_Discount.cs" />
+    <Compile Include="Migrations\201901290237240_Discount.Designer.cs">
+      <DependentUpon>201901290237240_Discount.cs</DependentUpon>
+    </Compile>
+
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -311,6 +323,8 @@
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\Index.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -408,9 +422,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\ExtendUser\ListDiscounts.cshtml" />
-    <Content Include="Views\ExtendUser\EditDiscount.cshtml" />
-    <Content Include="Views\ExtendUser\CreateDiscount.cshtml" />
     <Content Include="Views\ExtendUser\Profile.cshtml" />
     <Content Include="Views\ExtendUser\EditProfile.cshtml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
@@ -438,6 +449,17 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901290133101_Data.resx">
+      <DependentUpon>201901290133101_Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901290237240_Discount.resx">
+      <DependentUpon>201901290237240_Discount.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

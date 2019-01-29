@@ -15,7 +15,6 @@ namespace OnlineShop.Areas.Admin.Controllers
 
 
 
-
         private ApplicationDbContext _db = new ApplicationDbContext();
 
         [Authorize(Roles = "Admin")]
@@ -27,10 +26,10 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(model);
         }
 
-      
 
 
-     
+
+
 
 
 
@@ -48,8 +47,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction("Index", "Discount");
         }
 
-
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult Create()
         {
             ViewBag.User = new SelectList(_db.Users, "Id", "Email");
@@ -84,8 +82,6 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Discount");
         }
-
-
 
     }
 }
