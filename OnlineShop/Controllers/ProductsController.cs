@@ -185,12 +185,39 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Products
-        public ActionResult sreach(string sreach=null)
+        public ActionResult Search(int? minPrice, int? maxPrice, int? count, string search=null)
         {
-            IEnumerable<Product> model;
-            if(sreach!=null)
+            IEnumerable<Product> model = null;
+            if(minPrice == null)
             {
-                model = db.products.Where(p => p.name.Contains(sreach));
+                minPrice = 0;
+            }
+
+            if(maxPrice == null)
+            {
+                maxPrice = 9999999;
+            }
+
+            if(count == null)
+            {
+                count = 0;
+            }
+            if(search != null)
+            {
+                String[] searchSplit = search.Split(' ');
+                var tmp = searchSplit[0];
+                model = db.products.Where(p => (p.cat_pro.name.Contains(tmp) || p.name.Contains(tmp)) && p.price < maxPrice && p.price > minPrice && p.count > count);
+                for (int i = 1; i < searchSplit.Length; i++)
+                {
+                    var tmp2 = searchSplit[i];
+                    if (tmp2 != "")
+                    {
+
+                        model = model.Union(model.Concat(db.products.Where(p => (p.cat_pro.name.Contains(tmp2) || p.name.Contains(tmp2)) 
+                        && p.price < maxPrice && p.price > minPrice && p.count > count)));
+
+                    }
+                }
                 return View(model);
             }
             else
