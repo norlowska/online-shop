@@ -1,4 +1,6 @@
-﻿using OnlineShop.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using OnlineShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Controllers
 {
+
     [Authorize]
     public class CheckoutController : Controller
     {
@@ -14,21 +17,45 @@ namespace OnlineShop.Controllers
         // GET: Checkout
         public ActionResult AddressAndPayment()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddressAndPayment(FormCollection values)
-        {
             var order = new Order();
             TryUpdateModel(order);
             try
             {
+                var id = User.Identity.GetUserId();
+                UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(storeDB);
+                ApplicationUserManager userManager = new ApplicationUserManager(store);
+                ApplicationUser user = userManager.FindById(id);
                 order.Username = User.Identity.Name;
                 order.OrderDate = DateTime.Now;
+                order.FirstName = user.imie;
+                order.LastName = user.Nazwisko;
+                order.Address = user.Adres;
+                order.City = user.miasto;
+                order.State = user.Województwo;
+                order.PostalCode = user.kod_pocztowy;
+                order.Country = user.Kraj;
+                order.Phone = user.PhoneNumber;
+                order.Email = user.Email;
 
+            }
+            catch
+            {
+                return View(order);
+            }
+            return View(order);
+        }
+
+        [HttpPost]
+        public ActionResult AddressAndPayment(Order order)
+        {
+            TryUpdateModel(order);
+            try
+            {
+                order.orderState = OrderState.New;
                 storeDB.Orders.Add(order);
                 storeDB.SaveChanges();
+
+                //TODO: Email do usera
 
                 var cart = ShoppingCart.GetCart(HttpContext);
                 cart.CreateOrder(order);
