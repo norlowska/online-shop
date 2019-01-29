@@ -9,7 +9,7 @@ namespace OnlineShop.Models
     public class discount_for_user : IEntit
     {
 
-      public int count { get; set; }
+   
 
       public  int percent { get; set; }
 

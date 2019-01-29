@@ -4,6 +4,7 @@
     ViewBag.Title = "Twój koszyk";
 }
 
+<<<<<<< HEAD
 @section styles {
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/admin_styles.css")" />
 }
@@ -41,6 +42,67 @@
                             Ilość
                         </th>
                     </tr>
+=======
+<h3>Twój koszyk</h3>
+
+<p class="button">
+    @Html.ActionLink("Do kasy >>", "AddressAndPayment", "Checkout")
+
+
+    @if (ViewBag.discount == 1)
+    {
+        if (ViewBag.str == 1)
+        {
+            @Html.ActionLink("uzywaj Zniszki", "Index", "ShoppingCart", new { str = 0 }, null)
+        }
+
+        if (ViewBag.str == 0)
+        {
+            @Html.ActionLink("Nie uzywaj Zniszki", "Index", "ShoppingCart", new { str = 1 }, null)
+        }
+
+
+    }
+
+</p>
+<div id="update-message"></div>
+<table class="table">
+    <tr>
+        <th>
+            Nazwa
+        </th>
+        <th>
+            Opis
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            Ilość
+        </th>
+    </tr>
+
+    @foreach (var item in Model.CartItems)
+    {
+    <tr id="row-c">
+        <td>
+            @Html.ActionLink(item.Product.name, "Details", "Products", new { id = item.ProductId }, null)
+        </td>
+        <td>
+            @item.Product.name
+        </td>
+        <td>
+            @item.Product.price
+        </td>
+        <td id="item-count-@item.RecordId">
+            @item.Count
+        </td>
+        <td>
+             @Html.ActionLink("Usuń","RemoveFromCart","ShoppingCart",new { id = item.RecordId },null)
+        </td>
+    </tr>
+    }
+>>>>>>> Discount
 
                     @foreach (var item in Model.CartItems)
                     {
