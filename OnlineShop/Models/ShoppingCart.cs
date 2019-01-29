@@ -93,11 +93,16 @@ namespace OnlineShop.Models
             return count ?? 0;
         }
 
-        public decimal GetTotal()
+        public decimal GetTotal(float zniszka)
         {
             decimal? count = (from cartItems in storeDB.Carts
                           where cartItems.CartId == ShoppingCartId
                           select (int?)cartItems.Count * cartItems.Product.price).Sum();
+            if (zniszka < 1)
+            {
+                var pom = (float)count * zniszka;
+                count = count - (decimal)pom;
+            }
             return count ?? decimal.Zero;
         }
 

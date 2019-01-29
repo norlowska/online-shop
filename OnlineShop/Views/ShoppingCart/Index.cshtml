@@ -8,6 +8,23 @@
 
 <p class="button">
     @Html.ActionLink("Do kasy >>", "AddressAndPayment", "Checkout")
+
+
+    @if (ViewBag.discount == 1)
+    {
+        if (ViewBag.str == 1)
+        {
+            @Html.ActionLink("uzywaj Zniszki", "Index", "ShoppingCart", new { str = 0 }, null)
+        }
+
+        if (ViewBag.str == 0)
+        {
+            @Html.ActionLink("Nie uzywaj Zniszki", "Index", "ShoppingCart", new { str = 1 }, null)
+        }
+
+
+    }
+
 </p>
 <div id="update-message"></div>
 <table class="table">
