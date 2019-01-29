@@ -45,7 +45,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             store.UpdateAsync(user);
 
-            return RedirectToAction("Index", "ExtendUser");
+            return RedirectToAction("Index", "User");
         }
 
         // GET: Admin/User/Edit/{id}
@@ -92,7 +92,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             cUser.Roles.Add(new IdentityUserRole { RoleId = form["Rola"] });
             store.UpdateAsync(cUser);
 
-            return RedirectToAction("Index", "ExtendUser");
+            return RedirectToAction("Index", "User");
         }
 
         public ActionResult SendEmail()

@@ -20,8 +20,8 @@ namespace OnlineShop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        
-        public ActionResult Index(int? str)
+
+        public ActionResult Index(int? str = 1)
         {
             int i = db.products.Count();
             if (User.Identity.IsAuthenticated)
@@ -32,43 +32,43 @@ namespace OnlineShop.Controllers
                 ApplicationUser cUser = userManager.FindById(id);
                 ViewBag.Ograniczeni = cUser.Ograniczeni;
                 ViewBag.pom = cUser.Ograniczeni;
-              
-                
-                if(i>cUser.Ograniczeni)
+
+
+                if (i > cUser.Ograniczeni && cUser.Ograniczeni != 0)
                 {
                     int reszta = i % cUser.Ograniczeni;
-                    if(reszta==0)
+                    if (reszta == 0)
                     {
                         ViewBag.ilosc_stron = i / cUser.Ograniczeni;
-                        
+
                     }
                     else
                     {
                         ViewBag.ilosc_stron = (i / cUser.Ograniczeni) + 1;
-                        
+
                     }
 
 
-                    if(str==null || str==1)
+                    if (str == null || str == 1)
                     {
                         ViewBag.i = 0;
                         ViewBag.Ograniczeni = cUser.Ograniczeni;
                     }
                     else
                     {
-                        for(int j=2; j<= ViewBag.ilosc_stron; j++)
+                        for (int j = 2; j <= ViewBag.ilosc_stron; j++)
                         {
 
-                            if(str==j)
-                            {
-                                ViewBag.i = cUser.Ograniczeni * (j-1);
-                                ViewBag.Ograniczeni = cUser.Ograniczeni*j;
-                            }
-
-                            if(str== ViewBag.ilosc_stron)
+                            if (str == j)
                             {
                                 ViewBag.i = cUser.Ograniczeni * (j - 1);
-                                ViewBag.Ograniczeni = db.products.Count(); 
+                                ViewBag.Ograniczeni = cUser.Ograniczeni * j;
+                            }
+
+                            if (str == ViewBag.ilosc_stron)
+                            {
+                                ViewBag.i = cUser.Ograniczeni * (j - 1);
+                                ViewBag.Ograniczeni = db.products.Count();
                             }
 
                         }
@@ -79,50 +79,66 @@ namespace OnlineShop.Controllers
                 {
                     int limit = 5;
                     int reszta = i % limit;
-                    if(reszta==0)
+                    if (i < limit)
+                    {
+                        ViewBag.str = 1;
+                        ViewBag.i = 0;
+                        ViewBag.ilosc_stron = 1;
+                        ViewBag.Ograniczeni = i;
+                        return View(db.products.ToList());
+                    }
+                    if (reszta == 0)
                     {
                         ViewBag.ilosc_stron = i / limit;
-                        
+
                     }
                     else
                     {
                         ViewBag.ilosc_stron = (i / limit) + 1;
-                        
+
                     }
 
 
-                    if(str==null || str==1)
+                    if (str == null || str == 1)
                     {
                         ViewBag.i = 0;
                         ViewBag.Ograniczeni = limit;
                     }
                     else
                     {
-                        for(int j=2; j<= ViewBag.ilosc_stron; j++)
+                        for (int j = 2; j <= ViewBag.ilosc_stron; j++)
                         {
 
-                            if(str==j)
+                            if (str == j)
                             {
-                                ViewBag.i = limit * (j-1);
+                                ViewBag.i = limit * (j - 1);
                                 ViewBag.Ograniczeni = limit * j;
                             }
 
-                            if(str== ViewBag.ilosc_stron)
+                            if (str == ViewBag.ilosc_stron)
                             {
                                 ViewBag.i = limit * (j - 1);
-                                ViewBag.Ograniczeni = db.products.Count(); 
+                                ViewBag.Ograniczeni = db.products.Count();
                             }
 
                         }
 
                     }
-                   
+
                 }
-                
+
             }
             else
             {
                 int limit = 5;
+                if (i < limit)
+                {
+                    ViewBag.str = 1;
+                    ViewBag.i = 0;
+                    ViewBag.ilosc_stron = 1;
+                    ViewBag.Ograniczeni = i;
+                    return View(db.products.ToList());
+                }
                 int reszta = i % limit;
                 if (reszta == 0)
                 {
@@ -162,17 +178,10 @@ namespace OnlineShop.Controllers
 
                 }
             }
-           
+
             ViewBag.str = str;
             var model = db.products.ToList();
             return View(model);
-        }
-
-        public ActionResult test(int? str)
-        {
-            ViewBag.str = str;
-            
-            return View();
         }
 
         // GET: Products

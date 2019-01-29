@@ -35,6 +35,8 @@ namespace OnlineShop.Models
         public List<object> files { get; set; }
         public int count { get; set; }
 
+        public DateTime Add_date { get; set; }
+
         public virtual Category cat_pro { get; set; }
         //public ICollection<Comment> comments { get; set; }
 

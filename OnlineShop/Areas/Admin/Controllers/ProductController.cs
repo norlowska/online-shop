@@ -135,7 +135,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                         }
 
                     }
-
+                    product.Add_date = DateTime.Now;
                     db.products.Add(product);
                     db.SaveChanges();
                     return RedirectToAction("Index");
